@@ -7,13 +7,11 @@ public class BoatTrip {
     public LocalDateTime startTime;
     public int tripNumber;
 
-    public int BoatTrip(LocalDate currentDate, LocalDateTime currentTime,int identifier){
+    public BoatTrip(LocalDate currentDate, LocalDateTime currentTime,int identifier){
 
         startDate = currentDate;
         startTime = currentTime;
         tripNumber = identifier;
-
-        return identifier;
 
     }
 
