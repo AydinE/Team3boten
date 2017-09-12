@@ -5,13 +5,10 @@
 
 
 # Sensitive or high-churn files:
-.idea/
+idea/
 
 # CMake
 cmake-build-debug/
-
-# Mongo Explorer plugin:
-.idea/**/mongoSettings.xml
 
 ## File-based project format:
 *.iws
