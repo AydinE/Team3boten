@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+//BoatTrip
 public class BoatTrip {
 
     public LocalDate startDate;
