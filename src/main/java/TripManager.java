@@ -30,4 +30,8 @@ public class TripManager {
         System.out.println("wrong number");
     }
 
+    public List<BoatTrip> getBoatTrips() {
+        return trips;
+    }
+
 }
