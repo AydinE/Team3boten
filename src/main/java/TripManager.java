@@ -1,9 +1,6 @@
 
-import java.time.Duration;
 import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
-import java.time.temporal.Temporal;
-import java.time.temporal.TemporalField;
-import java.time.temporal.TemporalUnit;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList; // implementatie
 import java.util.List;  // aangeven dat je een list wilt
 
@@ -21,17 +18,24 @@ public class TripManager {
         return identifier;
     }
     // End a boattrip
-    public void endTrip(int tripnumber) {
+    public boolean endTrip(int tripnumber) {
         for (int i = 0; i < trips.size(); i++) {
             BoatTrip trip = trips.get(i);
             if (tripnumber == trip.getTripNumber()) {
                 LocalDateTime endtime = LocalDateTime.now(); // nieuwe variabele
                 trip.setEndTime(endtime);
-                System.out.println(endtime);
-                return;
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MM yyyy  HH:mm");
+                String out = endtime.format(formatter);
+                System.out.println("Trip " + tripnumber + " ended at: " + out);
+                return true;
             }
         }
         System.out.println("wrong number");
+        return false;
+    }
+
+    public List<BoatTrip> getBoatTrips() {
+        return trips;
     }
 
 //    //Average trip time
@@ -55,4 +59,4 @@ public class TripManager {
 
 
 
-}
+
