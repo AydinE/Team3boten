@@ -1,5 +1,6 @@
 
 import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList; // implementatie
 import java.util.List;  // aangeven dat je een list wilt
 
@@ -23,7 +24,9 @@ public class TripManager {
             if (tripnumber == trip.getTripNumber()) {
                 LocalDateTime endtime = LocalDateTime.now(); // nieuwe variabele
                 trip.setEndTime(endtime);
-                System.out.println(endtime);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MM yyyy  HH:mm");
+                String out = endtime.format(formatter);
+                System.out.println("Trip " + tripnumber + " ended at: " + out);
                 return;
             }
         }

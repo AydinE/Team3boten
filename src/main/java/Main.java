@@ -12,6 +12,7 @@ public class Main {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MM yyyy  HH:mm");
         String out = currentTime.format(formatter);
         System.out.println(out);
+        // added 2 hrs and 37 minutes to get a time value
         Duration d = Duration.between(currentTime.minusHours(2).minusMinutes(37), LocalDateTime.now());
         //      System.out.println("Time of the boattrip was " + d.getSeconds() + " seconds");
 
@@ -28,20 +29,27 @@ public class Main {
         TripManager manager = new TripManager();
 
         //Maak een aantal nieuwe trips | Laat tripnumber en begintijd zien
-        for (
-                int i = 0;
-                i < 10; i++)
-
-        {
+        for (int i = 0;i < 2; i++) {
 
             int tripId = manager.createTrip();
-            System.out.println("Trip aangemaakt met: " + tripId);
+            System.out.println("Tripnumber created: " + tripId);
 
         }
+        for (int i = 0;i < 2; i++) {
 
-        System.out.println("Totaal aantal boottochten: " + manager.getBoatTrips().
+            manager.endTrip(i+1);
+        }
+        for (int i = 0;i < 2; i++) {
 
-                size());
+            int tripId = manager.createTrip();
+            System.out.println("Tripnumber created: " + tripId);
+
+        }
+        for (int i = 2;i < 4; i++) {
+
+            manager.endTrip(i+1);
+        }
+        System.out.println("Total number of trips: " + manager.getBoatTrips().size());
 
         //End trip laat duur van trip zien.
 
