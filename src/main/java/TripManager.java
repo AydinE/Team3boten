@@ -1,6 +1,7 @@
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
+import java.util.ArrayList; // implementatie
+import java.util.List;  // aangeven dat je een list wilt
 
 public class TripManager {
 
@@ -15,7 +16,7 @@ public class TripManager {
 
         return identifier;
     }
-
+    // End a boattrip
     public void endTrip(int tripnumber) {
         for (int i = 0; i < trips.size(); i++) {
             BoatTrip trip = trips.get(i);
