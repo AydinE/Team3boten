@@ -3,8 +3,8 @@ import java.time.LocalDateTime;
 //BoatTrip
 public class BoatTrip {
 
-    private LocalDateTime startTime;
-    private int tripNumber;
+    public LocalDateTime startTime;
+    public int tripNumber;
 
     public BoatTrip(LocalDateTime currentTime,int identifier){
 
