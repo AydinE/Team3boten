@@ -1,17 +1,11 @@
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
+import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
+import java.util.ArrayList; // implementatie
+import java.util.List;  // aangeven dat je een list wilt
 
 public class TripManager {
 
     private List<BoatTrip> trips = new ArrayList<BoatTrip>();
-//    private int tripnumber = 0;
-//    private LocalDateTime endDate;
-//
-//    public TripManager(int tripnumber, LocalDateTime endDate) {
-//        this.tripnumber = tripnumber;
-//        this.endDate = endDate;
-//    }
 
     // Start a new boattrip
     public int createTrip() {
@@ -21,36 +15,19 @@ public class TripManager {
         trips.add(boatTrip);
 
         return identifier;
-
     }
-
-    // End an existing boattrip
-    public void endTrip() {
-
-
-
+    // End a boattrip
+    public void endTrip(int tripnumber) {
+        for (int i = 0; i < trips.size(); i++) {
+            BoatTrip trip = trips.get(i);
+            if (tripnumber == trip.getTripNumber()) {
+                LocalDateTime endtime = LocalDateTime.now(); // nieuwe variabele
+                trip.setEndTime(endtime);
+                System.out.println(endtime);
+                return;
+            }
+        }
+        System.out.println("wrong number");
     }
-
-    // Return list of trips
-    public List<BoatTrip> getBoatTrips () {
-
-        return trips;
-
-    }
-
-//    public static void endTrip(int tripnumber, List<Boat> boatlist) {
-//        for (int i = 0; i < boatlist.size(); i++) {
-//            if (tripnumber == //) {
-//                // Op plaats Boattrip moet de verwijzing naar tripnumberclass komen
-//                LocalDateTime endtime;
-//                LocalDate enddate;
-//
-//            } else {
-//
-//                System.out.println('wrong number']);
-//            }
-//        }
-//        System.out.println(endtime, enddate);
-//    }
 
 }
