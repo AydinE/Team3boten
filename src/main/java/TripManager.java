@@ -1,20 +1,24 @@
-package main.java;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TripManager {
 
-    int tripnumber = 0;
-    LocalDateTime endtime;
-    LocalDate enddate;
+    private List<BoatTrip> trips = new ArrayList<BoatTrip>();
+    private int tripnumber = 0;
+    private LocalDateTime endDate;
 
-    public TripManager(int tripnumber, LocalDateTime endtime, LocalDate enddate) {
+    public TripManager(int tripnumber, LocalDateTime endDate) {
         this.tripnumber = tripnumber;
-        this.endtime = endtime;
-        this.enddate = enddate;
+        this.endDate = endDate;
     }
-//
+
+    public void createTrip() {
+        int identifier = trips.size() + 1;
+        BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
+        trips.add(boatTrip);
+    }
+
 //    public static void endTrip(int tripnumber, List<Boat> boatlist) {
 //        for (int i = 0; i < boatlist.size(); i++) {
 //            if (tripnumber == //) {
