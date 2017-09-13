@@ -9,21 +9,20 @@ public class TripManager {
     public void createTrip() {
         int identifier = trips.size() + 1;
         BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
-        trips.add(boatTrip);
+        trips.add(boatTrip); // waarom nog een keer add?
     }
 
-//    public static void endTrip(int tripnumber, List<Boat> boatlist) {
-//        for (int i = 0; i < boatlist.size(); i++) {
-//            if (tripnumber == getTripNumber) {
-//                // Op plaats Boattrip moet de verwijzing naar tripnumberclass komen
-//                LocalDateTime endtime;
-//                //
-//            } else {
-//
-//                System.out.println('wrong number']);
-//            }
-//        }
-//        System.out.println(endtime, enddate);
-//    }
+    public void endTrip(int tripnumber) {
+        for (int i = 0; i < trips.size(); i++) {
+            BoatTrip trip = trips.get(i);
+            if (tripnumber == trip.getTripNumber()) {
+                LocalDateTime endtime = LocalDateTime.now(); // nieuwe variabele
+                trip.setEndTime(endtime);
+                System.out.println(endtime);
+                return;
+            }
+        }
+        System.out.println("wrong number");
 
+    }
 }
