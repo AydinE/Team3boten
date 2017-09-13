@@ -5,12 +5,25 @@ public class BoatTrip {
 
     private LocalDateTime startTime;
     private int tripNumber;
+    private LocalDateTime endTime;
 
     public BoatTrip(LocalDateTime currentTime,int identifier){
 
         startTime = currentTime;
         tripNumber = identifier;
 
+    }
+
+    //Getter endTime
+    public LocalDateTime getEndTime()
+    {
+        return this.endTime;
+    }
+
+    //Settter endTime
+    public void setEndTime(LocalDateTime dateTime)
+    {
+        this.endTime = dateTime;
     }
 
     // Getter startTime
