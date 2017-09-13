@@ -8,10 +8,9 @@ public class TripManager {
     private int tripnumber = 0;
     private LocalDateTime endDate;
 
-    public TripManager(int tripnumber, LocalDateTime endtime, LocalDate enddate) {
+    public TripManager(int tripnumber, LocalDateTime endDate) {
         this.tripnumber = tripnumber;
-        this.endtime = endtime;
-        this.enddate = enddate;
+        this.endDate = endDate;
     }
 
     public void createTrip() {
