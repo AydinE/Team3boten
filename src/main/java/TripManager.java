@@ -5,13 +5,6 @@ import java.util.List;
 public class TripManager {
 
     private List<BoatTrip> trips = new ArrayList<BoatTrip>();
-    private int tripnumber = 0;
-    private LocalDateTime endDate;
-
-    public TripManager(int tripnumber, LocalDateTime endDate) {
-        this.tripnumber = tripnumber;
-        this.endDate = endDate;
-    }
 
     public void createTrip() {
         int identifier = trips.size() + 1;

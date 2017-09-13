@@ -9,21 +9,17 @@ public class BoatTrip {
     private LocalDateTime endTime;
 
     public BoatTrip(LocalDateTime currentTime, int identifier) {
-
         startTime = currentTime;
         tripNumber = identifier;
-
     }
 
     //Getter endTime
-    public LocalDateTime getEndTime()
-    {
+    public LocalDateTime getEndTime() {
         return this.endTime;
     }
 
     //Settter endTime
-    public void setEndTime(LocalDateTime dateTime)
-    {
+    public void setEndTime(LocalDateTime dateTime) {
         this.endTime = dateTime;
     }
 
