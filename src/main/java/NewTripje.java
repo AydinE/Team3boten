@@ -21,7 +21,7 @@ public class NewTripje {
 
             BoatTrip lastTrip = trips.get(trips.size() - 1);
 
-            BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), lastTrip.tripNumber + 1);
+            BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), lastTrip.getTripNumber() + 1);
 
             trips.add(boatTrip);
 
