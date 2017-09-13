@@ -36,7 +36,7 @@ public class BoatTrip {
         return this.tripNumber;
     }
 
-    public void setStartTime(int number) {
+    public void setTripNumber(int number) {
         this.tripNumber = number;
     }
 
