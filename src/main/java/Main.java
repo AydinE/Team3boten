@@ -7,8 +7,8 @@ public class Main {
         LocalDateTime currentTime = LocalDateTime.now();
         int identifier = 1;
         BoatTrip boatTrip1 = new BoatTrip(currentTime, identifier);
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("d MMM yyyy  HH:mm");
-        String out = currentTime.format(format);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MM yyyy  HH:mm");
+        String out = currentTime.format(formatter);
         System.out.println(out);
     }
 }
