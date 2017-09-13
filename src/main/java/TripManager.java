@@ -6,10 +6,14 @@ public class TripManager {
 
     private List<BoatTrip> trips = new ArrayList<BoatTrip>();
 
-    public void createTrip() {
+    // Start a new boattrip
+    public int createTrip() {
+
         int identifier = trips.size() + 1;
         BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
-        trips.add(boatTrip); // waarom nog een keer add?
+        trips.add(boatTrip);
+
+        return identifier;
     }
 
     public void endTrip(int tripnumber) {
@@ -23,6 +27,6 @@ public class TripManager {
             }
         }
         System.out.println("wrong number");
-
     }
+
 }
