@@ -14,14 +14,13 @@ public class TripManager {
         this.endtime = endtime;
         this.enddate = enddate;
     }
-//
-//    public static void endTrip(int tripnumber, List<Boat> boatlist) {
+
+//    public void endTrip(int tripnumber, List<BoatTrip> boatlist) {
 //        for (int i = 0; i < boatlist.size(); i++) {
-//            if (tripnumber == //) {
+//            if (tripnumber == getTripNumber) {
 //                // Op plaats Boattrip moet de verwijzing naar tripnumberclass komen
 //                LocalDateTime endtime;
-//                LocalDate enddate;
-//
+//                //
 //            } else {
 //
 //                System.out.println('wrong number']);
