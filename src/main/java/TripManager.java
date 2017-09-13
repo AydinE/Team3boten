@@ -5,11 +5,37 @@ import java.util.List;
 public class TripManager {
 
     private List<BoatTrip> trips = new ArrayList<BoatTrip>();
+//    private int tripnumber = 0;
+//    private LocalDateTime endDate;
+//
+//    public TripManager(int tripnumber, LocalDateTime endDate) {
+//        this.tripnumber = tripnumber;
+//        this.endDate = endDate;
+//    }
 
-    public void createTrip() {
+    // Start a new boattrip
+    public int createTrip() {
+
         int identifier = trips.size() + 1;
         BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
         trips.add(boatTrip);
+
+        return identifier;
+
+    }
+
+    // End an existing boattrip
+    public void endTrip() {
+
+
+
+    }
+
+    // Return list of trips
+    public List<BoatTrip> getBoatTrips () {
+
+        return trips;
+
     }
 
 //    public static void endTrip(int tripnumber, List<Boat> boatlist) {
