@@ -1,9 +1,6 @@
 import java.time.LocalDateTime;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TripManager {
 
