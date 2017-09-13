@@ -34,11 +34,11 @@ public class Main {
 
         }
 
-        System.out.println("Totaal aantal boottochten: " + manager.getBoatTrips().size());
+        //System.out.println("Totaal aantal boottochten: " + manager.getBoatTrips().size());
 
         //End trip laat duur van trip zien.
 
         //Geef overzicht van gemiddelde duur van een boattrip.
-
+       // manager.averageTripTime();
     }
 }
