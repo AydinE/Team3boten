@@ -3,18 +3,34 @@ import java.time.LocalDateTime;
 //BoatTrip
 public class BoatTrip {
 
-    public LocalDate startDate;
-    public LocalDateTime startTime;
-    public int tripNumber;
+    private LocalDateTime startTime;
+    private int tripNumber;
 
-    public int BoatTrip(LocalDate currentDate, LocalDateTime currentTime,int identifier){
+    public BoatTrip(LocalDateTime currentTime,int identifier){
 
-        startDate = currentDate;
         startTime = currentTime;
         tripNumber = identifier;
 
-        return identifier;
+    }
 
+    // Getter startTime
+    public LocalDateTime getStartTime()
+    {
+        return this.startTime;
+    }
+    // Setter startTime
+    public void setStartTime(LocalDateTime dateTime)
+    {
+        this.startTime = dateTime;
+    }
+
+    public int getTripNumber()
+    {
+        return this.tripNumber;
+    }
+    public void setStartTime(int number)
+    {
+        this.tripNumber = number;
     }
 
 }
