@@ -22,7 +22,7 @@ public class Main {
 
         }
 
-        System.out.println("Aantal actieve boottochten: " + manager.getBoatTrips().size());
+        System.out.println("Totaal aantal boottochten: " + manager.getBoatTrips().size());
 
         //End trip laat duur van trip zien.
 
