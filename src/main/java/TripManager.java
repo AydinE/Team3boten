@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TripManager {
 
-    private List<BoatTrip> trips = new ArrayList<BoatTrip>();
+    private List<BoatTrip> trips = new ArrayList<>();
 
     // Start a new boattrip
     public int createTrip() {
@@ -18,14 +18,14 @@ public class TripManager {
     }
 
     // End a boattrip
-    public void endTrip(int tripnumber) {
+    public void endTrip(int tripNumber) {
         for (int i = 0; i < trips.size(); i++) {
             BoatTrip trip = trips.get(i);
-            if (tripnumber == trip.getTripNumber()) {
+            if (tripNumber == trip.getTripNumber()) {
                 LocalDateTime endtime = LocalDateTime.now(); // nieuwe variabele
                 trip.setEndTime(endtime);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
-                System.out.println("Trip "+ tripnumber + " ended at: " + endtime.format(formatter));
+                System.out.println("Trip "+ tripNumber + " ended at: " + endtime.format(formatter));
                 return;
             }
         }

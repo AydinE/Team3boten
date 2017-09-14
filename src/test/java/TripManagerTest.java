@@ -44,7 +44,7 @@ public class TripManagerTest {
         tripManager.createTrip();
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         tripManager.endTrip(4);
-        // TODO: Check if error is printed to console
+        assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
 
     @After
