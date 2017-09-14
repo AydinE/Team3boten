@@ -31,6 +31,8 @@ public class TripManagerTest {
 
     }
 
+
+
     @Test
     public void createTrip() throws Exception {
         assertEquals(0, tripManager.getBoatTrips().size());
@@ -78,6 +80,17 @@ public class TripManagerTest {
         Assert.assertFalse(result); // assert=verwachting
     }
 
+    @Test
+    public void TripsTestAverageTime() throws InterruptedException {
+        TripManager a1 = new TripManager();
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.endTrip(1);
+        a1.endTrip(2);
+        Assert.assertNotEquals( 0 , a1.averageTripTime());
 
+    }
 
 }
