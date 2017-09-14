@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -66,7 +67,13 @@ public class TripManagerTest {
         boolean result = t.endTrip(2);
         Assert.assertFalse(result); // assert=verwachting
     }
-    // starten test verwachte resultaat?
+    // Userstory 5
+
+//    @Test
+//    public void noTripsAverageTimeTest() {
+//        TripManager a = averageTriptime;
+//        boolean result =
+//    }
 
 
 }
