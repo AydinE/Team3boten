@@ -1,20 +1,23 @@
-
-
-
-
-import org.junit.Assert;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.Assert.*;
 
 public class TripManagerTest {
+
+
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     private TripManager tripManager;
 
     @Before
     public void initialize() {
         tripManager = new TripManager();
+        System.setOut(new PrintStream(outContent));
     }
 
     @Test
@@ -37,16 +40,16 @@ public class TripManagerTest {
     }
 
     @Test
-    public void endTrip1() throws Exception {
+    public void endTripInvalidTripNumber() throws Exception {
         tripManager.createTrip();
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
-        assertEquals(null, boatTrip.getEndTime());
         tripManager.endTrip(4);
-        assertEquals("wrong number", boatTrip.getEndTime());
+        assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
 
-    @Test
-    public void getBoatTrips() throws Exception {
+    @After
+    public void cleanUpStreams() {
+        System.setOut(null);
     }
 
     // Userstory 2
@@ -64,12 +67,6 @@ public class TripManagerTest {
         Assert.assertFalse(result); // assert=verwachting
     }
     // starten test verwachte resultaat?
-
-    //Userstory 5
-    @Test
-    public void correctAverageTime(){
-
-    }
 
 
 }
