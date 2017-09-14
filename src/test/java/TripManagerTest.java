@@ -46,7 +46,18 @@ public class TripManagerTest {
         tripManager.endTrip(4);
         assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
-
+    @Test
+    public void getBoatTrips() throws Exception {
+        tripManager.createTrip();
+        int boatTripCount = tripManager.getBoatTrips().size();
+        assertEquals(1, boatTripCount);
+        tripManager.endTrip(1);
+        assertEquals(1, boatTripCount);
+        tripManager.createTrip();
+        tripManager.endTrip(2);
+        boatTripCount = tripManager.getBoatTrips().size();
+        assertEquals(2, boatTripCount);
+    }
     @After
     public void cleanUpStreams() {
         System.setOut(null);

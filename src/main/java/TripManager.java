@@ -39,6 +39,10 @@ public class TripManager {
 
     }
 
+    public double calculateTripPrice() {
+        double basePrice = 5;
+        
+    }
 
 //    //Average trip time
 //    public void averageTripTime() {
