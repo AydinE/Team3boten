@@ -19,7 +19,7 @@ public class Main {
         StringBuilder sb = new StringBuilder("Time of the boat trip was ");
         if (d.getSeconds() > 3600) {
             double hours = Math.floor(d.getSeconds() / 3600);
-            sb.append((int) hours + " hours and ");
+            sb.append((int) hours + " hours and "); // sb. append voegt hours toe aan string builder.
         }
         double minutes = Math.floor((d.getSeconds() % 3600) / 60);
         sb.append((int) minutes + " minutes");
@@ -33,7 +33,7 @@ public class Main {
 
             int tripId = manager.createTrip();
             System.out.println("Tripnumber created: " + tripId);
-
+            Thread.sleep(2000);
         }
         for (int i = 0;i < 2; i++) {
 
@@ -54,6 +54,6 @@ public class Main {
         //End trip laat duur van trip zien.
 
         //Geef overzicht van gemiddelde duur van een boattrip.
-
+        manager.averageTripTime();
     }
 }

@@ -65,5 +65,11 @@ public class TripManagerTest {
     }
     // starten test verwachte resultaat?
 
+    //Userstory 5
+    @Test
+    public void correctAverageTime(){
+
+    }
+
 
 }
