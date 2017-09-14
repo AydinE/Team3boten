@@ -15,11 +15,23 @@ public class TripManagerTest {
 
     private TripManager tripManager;
 
+
+
     @Before
     public void initialize() {
         tripManager = new TripManager();
         System.setOut(new PrintStream(outContent));
     }
+
+    // Userstory 5
+    @Test
+    public void noTripsTestAverageTime() throws InterruptedException {
+        TripManager a = new TripManager (); // Nu kan je bij de tripmanager.
+        Assert.assertEquals(0,a.averageTripTime());
+
+    }
+
+
 
     @Test
     public void createTrip() throws Exception {
@@ -67,7 +79,18 @@ public class TripManagerTest {
         boolean result = t.endTrip(2);
         Assert.assertFalse(result); // assert=verwachting
     }
-    // starten test verwachte resultaat?
 
+    @Test
+    public void TripsTestAverageTime() throws InterruptedException {
+        TripManager a1 = new TripManager();
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.endTrip(1);
+        a1.endTrip(2);
+        Assert.assertNotEquals( 0 , a1.averageTripTime());
+
+    }
 
 }
