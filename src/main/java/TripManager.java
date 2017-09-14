@@ -23,7 +23,7 @@ public class TripManager {
     }
 
     // End a boattrip
-    public void endTrip(int tripNumber) {
+    public boolean endTrip(int tripNumber) {
         for (int i = 0; i < trips.size(); i++) {
             BoatTrip trip = trips.get(i);
             if (tripNumber == trip.getTripNumber()) {
@@ -31,7 +31,7 @@ public class TripManager {
                 trip.setEndTime(endtime);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
                 System.out.println("Trip "+ tripNumber + " ended at: " + endtime.format(formatter));
-                return;
+                return true;
             }
         }
         System.out.println("wrong number");
