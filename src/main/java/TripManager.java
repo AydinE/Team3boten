@@ -52,20 +52,27 @@ public class TripManager {
         int completedTrips = 0;
         Duration totalTime = Duration.ZERO;
 
-        for (int i = 0; i < trips.size(); i++) {
-            BoatTrip trip = trips.get(i);
-            if (trip.getEndTime() != null) {
-                Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
-                System.out.println("Duration was: " + d);
-                totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
-                completedTrips = completedTrips + 1;
+        if (trips.size() > 0) {
+            for (int i = 0; i < trips.size(); i++) {
+                BoatTrip trip = trips.get(i);
+                if (trip.getEndTime() != null) {
+                    Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
+                    System.out.println("Duration was: " + d);
+                    totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
+                    completedTrips = completedTrips + 1;
+                }
+
             }
+            System.out.println("Averagetime " + totalTime.getSeconds() / completedTrips); /* de get.Seconds is een LONG
+        value en kan daarom mee gerekend worden in combinatie met INT */
+            return totalTime.getSeconds() / completedTrips;
+
+        } else {
+
+            return 0;
 
         }
-        System.out.println("Averagetime " + totalTime.getSeconds() / completedTrips); /* de get.Seconds is een LONG
-        value en kan daarom mee gerekend worden in combinatie met INT */
 
-        return totalTime.getSeconds() / completedTrips;
 
 
     }
