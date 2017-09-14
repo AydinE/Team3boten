@@ -1,4 +1,5 @@
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,11 +15,23 @@ public class TripManagerTest {
 
     private TripManager tripManager;
 
+
+
     @Before
     public void initialize() {
         tripManager = new TripManager();
         System.setOut(new PrintStream(outContent));
     }
+
+    // Userstory 5
+    @Test
+    public void noTripsTestAverageTime() throws InterruptedException {
+        TripManager a = new TripManager (); // Nu kan je bij de tripmanager.
+        Assert.assertEquals(0,a.averageTripTime());
+
+    }
+
+
 
     @Test
     public void createTrip() throws Exception {
@@ -61,6 +74,34 @@ public class TripManagerTest {
     @After
     public void cleanUpStreams() {
         System.setOut(null);
+    }
+
+    // Userstory 2
+    @Test
+    public void endExistingTripTest() {
+        TripManager t = new TripManager();
+        int identifier = t.createTrip();
+        boolean result = t.endTrip(identifier);
+        Assert.assertTrue(result); // assert=verwachting
+    }
+    @Test
+    public void endTripWrongNumberTest() {
+        TripManager t = new TripManager();
+        boolean result = t.endTrip(2);
+        Assert.assertFalse(result); // assert=verwachting
+    }
+
+    @Test
+    public void TripsTestAverageTime() throws InterruptedException {
+        TripManager a1 = new TripManager();
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.createTrip();
+        Thread.sleep(2000);
+        a1.endTrip(1);
+        a1.endTrip(2);
+        Assert.assertNotEquals( 0 , a1.averageTripTime());
+
     }
 
 }

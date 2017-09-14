@@ -1,3 +1,6 @@
+
+import java.time.Duration;
+import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -5,7 +8,9 @@ import java.util.List;
 
 public class TripManager {
 
-    private List<BoatTrip> trips = new ArrayList<>();
+
+    // public/private/protect/niets Type naamVariable = new Type();
+    private ArrayList<BoatTrip> trips = new ArrayList<BoatTrip>();
 
     // Start a new boattrip
     public int createTrip() {
@@ -18,7 +23,7 @@ public class TripManager {
     }
 
     // End a boattrip
-    public void endTrip(int tripNumber) {
+    public boolean endTrip(int tripNumber) {
         for (int i = 0; i < trips.size(); i++) {
             BoatTrip trip = trips.get(i);
             if (tripNumber == trip.getTripNumber()) {
@@ -26,10 +31,11 @@ public class TripManager {
                 trip.setEndTime(endtime);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
                 System.out.println("Trip "+ tripNumber + " ended at: " + endtime.format(formatter));
-                return;
+                return true;
             }
         }
         System.out.println("wrong number");
+        return false;
     }
 
     // Return list of trips
@@ -44,21 +50,38 @@ public class TripManager {
         
     }
 
-//    //Average trip time
-//    public void averageTripTime() {
-//
-//        Duration totalTime = Duration.ZERO;
-//
-//        for (int i = 0; i < trips.size(); i++) {
-//            BoatTrip trip = trips.get(i);
-//            if (trip.getEndTime(). != null) {
-//                Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
-//                System.out.println("Duration was: " + d);
-//                totalTime.plus(d);
-//
-//            }
-//
-//        }
-//        System.out.println(totalTime);
+    //Average trip time
+    public long averageTripTime() throws InterruptedException {
 
+        int completedTrips = 0;
+        Duration totalTime = Duration.ZERO;
+
+        if (trips.size() > 0) {
+            for (int i = 0; i < trips.size(); i++) {
+                BoatTrip trip = trips.get(i);
+                if (trip.getEndTime() != null) {
+                    Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
+                    System.out.println("Duration was: " + d);
+                    totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
+                    completedTrips = completedTrips + 1;
+                }
+
+            }
+            System.out.println("Averagetime " + totalTime.getSeconds() / completedTrips); /* de get.Seconds is een LONG
+        value en kan daarom mee gerekend worden in combinatie met INT */
+            return totalTime.getSeconds() / completedTrips;
+
+        } else {
+
+            return 0;
+
+        }
+
+
+
+    }
 }
+
+
+
+
