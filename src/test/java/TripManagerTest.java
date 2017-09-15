@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -197,5 +198,13 @@ public class TripManagerTest {
         double price = calculator.calculateTripPrice(trip, weather);
         System.out.println("€ " + price);
         assertEquals((14), price, 0);
+    }
+
+    @Test
+    public void endTripPriceCalculatorError() throws Exception {
+        WeatherInfo weather = tripManager.getWeather();
+        weather.setApiURL("http://dsfsifusdfufdgdhfigiufdhfg.com");
+        weather.updateWeatherData();
+        assertEquals("Geen weerinformatie beschikbaar, kijk naar buiten voor actuele weer informatie\r\n", outContent.toString());
     }
 }

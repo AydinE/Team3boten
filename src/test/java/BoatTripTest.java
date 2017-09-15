@@ -11,6 +11,7 @@ public class BoatTripTest {
     private final LocalDateTime endTime = LocalDateTime.of(2017, 1, 1, 13,30);
 
     private final int tripNumber = 1;
+    private final double tripPrice = 10.5;
 
     private BoatTrip boatTrip;
 
@@ -52,6 +53,13 @@ public class BoatTripTest {
     public void setTripNumber() throws Exception {
         boatTrip.setTripNumber(tripNumber);
         assertEquals(tripNumber, boatTrip.getTripNumber());
+    }
+
+    @Test
+    public void getTripPrice() throws Exception {
+        assertEquals(0.0d, boatTrip.getTripPrice(), 0);
+        boatTrip.setTripPrice(tripPrice);
+        assertEquals(tripPrice, boatTrip.getTripPrice(), 0);
     }
 
 }

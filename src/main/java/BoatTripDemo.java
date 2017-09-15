@@ -8,13 +8,13 @@ public class BoatTripDemo {
         // Weer informatie
         WeatherInfo weather = new WeatherInfo();
         weather.updateWeatherData();
-        System.out.println();
 
         if (weather.isRaining()) {
             System.out.println("Het regent.");
         } else {
             System.out.println("Het regent niet.");
         }
+        System.out.println();
 
         if (weather.getTemperature() > 0) {
             System.out.println("Temperatuur: " + weather.getTemperature() + " graden celsius");
