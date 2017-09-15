@@ -16,19 +16,19 @@ public class TripManagerTest {
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
-    private TripManager tripManager;
+    private BoatTripManager tripManager;
 
 
     @Before
     public void initialize() {
-        tripManager = new TripManager();
+        tripManager = new BoatTripManager();
         System.setOut(new PrintStream(outContent));
     }
 
     // Userstory 5
     @Test
     public void noTripsTestAverageTime() throws InterruptedException {
-        TripManager a = new TripManager(); // Nu kan je bij de tripmanager.
+        BoatTripManager a = new BoatTripManager(); // Nu kan je bij de tripmanager.
         Assert.assertEquals(0, a.averageTripTime());
 
     }
@@ -82,7 +82,7 @@ public class TripManagerTest {
     // Userstory 2
     @Test
     public void endExistingTripTest() {
-        TripManager t = new TripManager();
+        BoatTripManager t = new BoatTripManager();
         int identifier = t.createTrip();
         boolean result = t.endTrip(identifier);
         Assert.assertTrue(result); // assert=verwachting
@@ -90,14 +90,14 @@ public class TripManagerTest {
 
     @Test
     public void endTripWrongNumberTest() {
-        TripManager t = new TripManager();
+        BoatTripManager t = new BoatTripManager();
         boolean result = t.endTrip(2);
         Assert.assertFalse(result); // assert=verwachting
     }
 
     @Test
     public void tripsTestAverageTime() throws InterruptedException {
-        TripManager a1 = new TripManager();
+        BoatTripManager a1 = new BoatTripManager();
         a1.createTrip();
         a1.createTrip();
         a1.endTrip(1);
