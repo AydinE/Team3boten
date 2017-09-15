@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Random;
 
@@ -10,7 +9,7 @@ public class Main {
 
         // Weer informatie
         WeatherInfo weather = new WeatherInfo();
-        weather.GetWeatherInfo();
+        weather.updateWeatherData();
 
         if (weather.isRaining()) {
             System.out.println("Het regent.");
