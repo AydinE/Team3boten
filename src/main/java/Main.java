@@ -12,6 +12,18 @@ public class Main {
         WeatherInfo weather = new WeatherInfo();
         weather.GetWeatherInfo();
 
+        if (weather.isRaining()) {
+            System.out.println("Het regent.");
+        } else {
+            System.out.println("Het regent niet.");
+        }
+
+        if (weather.getTemperature() > 0) {
+            System.out.println("Temperatuur: " + weather.getTemperature() + " graden celsius");
+        } else {
+            System.out.println("Geen weerinformatie beschikbaar.");
+        }
+
         LocalDateTime currentTime = LocalDateTime.now();
 
         TripManager manager = new TripManager();
