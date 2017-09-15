@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.net.URL;
 
 
-public class WeatherInfo implements AutoCloseable {
+public class WeatherInfo {
 
     private boolean raining;
     private BigDecimal temperature;
@@ -63,16 +63,12 @@ public class WeatherInfo implements AutoCloseable {
 
     static String convertStreamToString(java.io.InputStream is) {
 
-        try (java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A");) {
+        try (java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A")) {
 
             return s.hasNext() ? s.next() : "";
 
         }
 
-    }
-
-    public void close() throws Exception {
-        System.out.println("Closing stream!");
     }
 
 }
