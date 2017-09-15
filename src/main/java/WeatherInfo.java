@@ -20,7 +20,7 @@ public class WeatherInfo {
                 String output = convertStreamToString(stream);
 
                 // Converteer teruggekeerde string naar JSON
-                JSONObject jsonObj = new JSONObject(output.toString());
+                JSONObject jsonObj = new JSONObject(output);
                 JSONObject main = jsonObj.getJSONObject("main");
                 JSONArray weather = jsonObj.getJSONArray("weather");
                 int weatherId = (int) weather.getJSONObject(0).get("id");
@@ -53,5 +53,12 @@ public class WeatherInfo {
         try (java.util.Scanner s = new java.util.Scanner(is).useDelimiter("\\A")) {
             return s.hasNext() ? s.next() : "";
         }
+    }
+    public void setRaining(boolean raining) {
+        this.raining = raining;
+    }
+
+    public void setTemperature(BigDecimal temperature) {
+        this.temperature = temperature;
     }
 }

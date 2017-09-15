@@ -10,7 +10,7 @@ public class TripManager {
 
 
     // public/private/protect/niets Type naamVariable = new Type();
-    private ArrayList<BoatTrip> trips = new ArrayList<BoatTrip>();
+    private ArrayList<BoatTrip> trips = new ArrayList<>();
 
     private WeatherInfo weather = new WeatherInfo();
 
@@ -49,7 +49,10 @@ public class TripManager {
     public List<BoatTrip> getBoatTrips() {
 
         return trips;
+    }
 
+    public WeatherInfo getWeather() {
+        return weather;
     }
 
     //Average trip time
