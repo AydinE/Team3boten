@@ -45,13 +45,8 @@ public class TripManager {
 
     }
 
-    public double calculateTripPrice() {
-        double basePrice = 5;
-        
-    }
-
     //Average trip time
-    public long averageTripTime() throws InterruptedException {
+    public long averageTripTime() {
 
         int completedTrips = 0;
         Duration totalTime = Duration.ZERO;
