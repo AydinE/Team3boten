@@ -28,8 +28,7 @@ public class BoatTripPriceCalculator {
         double timeInMinutes = ((double) duration.getSeconds()) / 60;
 
 
-        double totalPrice = hourlyPrice * (timeInMinutes / 60);
-        return totalPrice;
+        return hourlyPrice * (timeInMinutes / 60);
 
     }
 
