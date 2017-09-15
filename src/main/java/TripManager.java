@@ -10,7 +10,12 @@ public class TripManager {
 
 
     // public/private/protect/niets Type naamVariable = new Type();
-    private ArrayList<BoatTrip> trips = new ArrayList<BoatTrip>();
+    private ArrayList<BoatTrip> trips ;
+
+    // constructor
+    public TripManager (){
+        trips = new ArrayList<BoatTrip>();
+    }
 
     // Start a new boattrip
     public int createTrip() {
