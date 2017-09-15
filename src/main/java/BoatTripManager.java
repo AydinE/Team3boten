@@ -35,6 +35,7 @@ public class BoatTripManager {
                 BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
                 weather.updateWeatherData();
                 double price = calculator.calculateTripPrice(trip, weather);
+                trip.setTripPrice(price);
                 System.out.println( "Price of trip: € " + price);
                 return true;
             }

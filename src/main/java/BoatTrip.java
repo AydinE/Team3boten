@@ -6,6 +6,7 @@ public class BoatTrip {
     private LocalDateTime startTime;
     private int tripNumber;
     private LocalDateTime endTime;
+    private double tripPrice;
 
     public BoatTrip(LocalDateTime currentTime, int identifier) {
         startTime = currentTime;
@@ -38,6 +39,14 @@ public class BoatTrip {
 
     public void setTripNumber(int number) {
         this.tripNumber = number;
+    }
+
+    public double getTripPrice() {
+        return this.tripPrice;
+    }
+
+    public void setTripPrice(double price) {
+        this.tripPrice = price;
     }
 
 }
