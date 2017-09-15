@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -59,7 +61,18 @@ public class TripManagerTest {
         tripManager.endTrip(4);
         assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
-
+    @Test
+    public void getBoatTrips() throws Exception {
+        tripManager.createTrip();
+        int boatTripCount = tripManager.getBoatTrips().size();
+        assertEquals(1, boatTripCount);
+        tripManager.endTrip(1);
+        assertEquals(1, boatTripCount);
+        tripManager.createTrip();
+        tripManager.endTrip(2);
+        boatTripCount = tripManager.getBoatTrips().size();
+        assertEquals(2, boatTripCount);
+    }
     @After
     public void cleanUpStreams() {
         System.setOut(null);
@@ -84,11 +97,13 @@ public class TripManagerTest {
     public void TripsTestAverageTime() throws InterruptedException {
         TripManager a1 = new TripManager();
         a1.createTrip();
-        Thread.sleep(2000);
         a1.createTrip();
-        Thread.sleep(2000);
         a1.endTrip(1);
         a1.endTrip(2);
+        // Pas eindtijd aan omdat er anders geen verschil tussen start en eindtijd zit.
+        List<BoatTrip> trips = a1.getBoatTrips();
+        trips.get(0).setEndTime(LocalDateTime.now().minusMinutes(35));
+        trips.get(1).setEndTime(LocalDateTime.now().minusMinutes(35));
         Assert.assertNotEquals( 0 , a1.averageTripTime());
 
     }

@@ -17,6 +17,9 @@ public class TripManager {
         trips = new ArrayList<BoatTrip>();
     }
 
+    private WeatherInfo weather = new WeatherInfo();
+
+
     // Start a new boattrip
     public int createTrip() {
 
@@ -36,6 +39,10 @@ public class TripManager {
                 trip.setEndTime(endtime);
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
                 System.out.println("Trip "+ tripNumber + " ended at: " + endtime.format(formatter));
+                BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
+                weather.updateWeatherData();
+                double price = calculator.calculateTripPrice(trip, weather);
+                System.out.println( "€ " + price);
                 return true;
             }
         }
@@ -50,9 +57,8 @@ public class TripManager {
 
     }
 
-
     //Average trip time
-    public long averageTripTime() throws InterruptedException {
+    public long averageTripTime() {
 
         int completedTrips = 0;
         Duration totalTime = Duration.ZERO;
