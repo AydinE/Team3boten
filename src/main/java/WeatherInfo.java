@@ -5,13 +5,14 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URL;
 
 
 public class WeatherInfo implements AutoCloseable {
 
     private boolean raining;
-    private double temperature;
+    private BigDecimal temperature;
 
     public void GetWeatherInfo() throws IOException {
 
@@ -28,7 +29,8 @@ public class WeatherInfo implements AutoCloseable {
             JSONArray weather = jsonObj.getJSONArray("weather");
             int weatherId = (int) weather.getJSONObject(0).get("id");
 
-            temperature = (double) main.get("temp");
+            //temperature = (double) main.get("temp");
+            temperature = new BigDecimal(String.valueOf(main.get("temp")));
 
             // De API geeft ID codes aan het weer, code 500 t/m 599 is gereserveerd voor weersituaties met regen
             // Als het ID dus buiten 500 t/m 599 valt dan regent het niet.
@@ -55,7 +57,7 @@ public class WeatherInfo implements AutoCloseable {
 
     public double getTemperature(){
 
-        return temperature;
+        return temperature.doubleValue();
 
     }
 
