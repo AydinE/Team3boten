@@ -7,6 +7,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -18,7 +19,6 @@ public class TripManagerTest {
     private TripManager tripManager;
 
 
-
     @Before
     public void initialize() {
         tripManager = new TripManager();
@@ -28,11 +28,10 @@ public class TripManagerTest {
     // Userstory 5
     @Test
     public void noTripsTestAverageTime() throws InterruptedException {
-        TripManager a = new TripManager (); // Nu kan je bij de tripmanager.
-        Assert.assertEquals(0,a.averageTripTime());
+        TripManager a = new TripManager(); // Nu kan je bij de tripmanager.
+        Assert.assertEquals(0, a.averageTripTime());
 
     }
-
 
 
     @Test
@@ -61,6 +60,7 @@ public class TripManagerTest {
         tripManager.endTrip(4);
         assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
+
     @Test
     public void getBoatTrips() throws Exception {
         tripManager.createTrip();
@@ -73,6 +73,7 @@ public class TripManagerTest {
         boatTripCount = tripManager.getBoatTrips().size();
         assertEquals(2, boatTripCount);
     }
+
     @After
     public void cleanUpStreams() {
         System.setOut(null);
@@ -86,6 +87,7 @@ public class TripManagerTest {
         boolean result = t.endTrip(identifier);
         Assert.assertTrue(result); // assert=verwachting
     }
+
     @Test
     public void endTripWrongNumberTest() {
         TripManager t = new TripManager();
@@ -97,13 +99,14 @@ public class TripManagerTest {
     public void tripsTestAverageTime() throws InterruptedException {
         TripManager a1 = new TripManager();
         a1.createTrip();
-        Thread.sleep(2000);
         a1.createTrip();
-        Thread.sleep(2000);
         a1.endTrip(1);
         a1.endTrip(2);
-        Assert.assertNotEquals( 0 , a1.averageTripTime());
-
+        // Pas eindtijd aan omdat er anders geen verschil tussen start en eindtijd zit.
+        List<BoatTrip> trips = a1.getBoatTrips();
+        trips.get(0).setEndTime(LocalDateTime.now().minusMinutes(35));
+        trips.get(1).setEndTime(LocalDateTime.now().minusMinutes(35));
+        Assert.assertNotEquals(0, a1.averageTripTime());
     }
 
     @Test
@@ -117,9 +120,10 @@ public class TripManagerTest {
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(26));
         double price = calculator.calculateTripPrice(trip, weather);
-        System.out.println( "€ " + price);
+        System.out.println("€ " + price);
         assertEquals((14), price, 0);
     }
+
     @Test
     public void endTripPriceCalculator26norain() {
         BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
@@ -134,6 +138,7 @@ public class TripManagerTest {
         System.out.println("€ " + price);
         assertEquals((16), price, 0);
     }
+
     @Test
     public void endTripPriceCalculator16rain() {
         BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
@@ -148,6 +153,7 @@ public class TripManagerTest {
         System.out.println("€ " + price);
         assertEquals((8), price, 0);
     }
+
     @Test
     public void endTripPriceCalculator19rain() {
         BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
@@ -162,6 +168,7 @@ public class TripManagerTest {
         System.out.println("€ " + price);
         assertEquals((12), price, 0);
     }
+
     @Test
     public void endTripPriceCalculator16norain() {
         BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
@@ -176,6 +183,7 @@ public class TripManagerTest {
         System.out.println("€ " + price);
         assertEquals((10), price, 0);
     }
+
     @Test
     public void endTripPriceCalculator19norain() {
         BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
