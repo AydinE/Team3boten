@@ -14,7 +14,7 @@ public class BoatTripManager {
 
 
     // Start a new boattrip
-    public BoatTrip createTrip(TripType tripType) {
+    public BoatTrip createTrip(BoatTripType tripType) {
         int identifier = trips.size() + 1;
       
         BoatTrip boatTrip ;

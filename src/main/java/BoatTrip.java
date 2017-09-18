@@ -8,9 +8,9 @@ public class BoatTrip {
     private int tripNumber;
     private LocalDateTime endTime;
     private double tripPrice;
-    private TripType tripType;
+    private BoatTripType tripType;
 
-    public BoatTrip(LocalDateTime currentTime, int identifier, TripType tripType) {
+    public BoatTrip(LocalDateTime currentTime, int identifier, BoatTripType tripType) {
         startTime = currentTime;
         tripNumber = identifier;
         this.tripType = tripType;
@@ -67,8 +67,8 @@ public class BoatTrip {
     }
 
     //Getter tripType
-    public TripType getTripType() {return this.tripType; }
+    public BoatTripType getTripType() {return this.tripType; }
 
     //Setter tripType
-    public void setTripType(TripType tripType) { this.tripType = tripType; }
+    public void setTripType(BoatTripType tripType) { this.tripType = tripType; }
 }
