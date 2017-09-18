@@ -1,21 +1,14 @@
-
 import java.time.Duration;
-import java.time.LocalDateTime; // Dit zijn imports uit JAVA om te gebruiken. (localdatetime,arraylist,list)
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TripManager {
+public class BoatTripManager {
 
 
     // public/private/protect/niets Type naamVariable = new Type();
-    private ArrayList<BoatTrip> trips ;
-
-    // constructor
-    public TripManager (){
-        trips = new ArrayList<BoatTrip>();
-    }
+    private ArrayList<BoatTrip> trips = new ArrayList<>();
 
     private WeatherInfo weather = new WeatherInfo();
 
@@ -42,7 +35,8 @@ public class TripManager {
                 BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
                 weather.updateWeatherData();
                 double price = calculator.calculateTripPrice(trip, weather);
-                System.out.println( "€ " + price);
+                trip.setTripPrice(price);
+                System.out.println( "Price of trip: € " + price);
                 return true;
             }
         }
@@ -54,7 +48,10 @@ public class TripManager {
     public List<BoatTrip> getBoatTrips() {
 
         return trips;
+    }
 
+    public WeatherInfo getWeather() {
+        return weather;
     }
 
     //Average trip time
@@ -68,25 +65,17 @@ public class TripManager {
                 BoatTrip trip = trips.get(i);
                 if (trip.getEndTime() != null) {
                     Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
-                    System.out.println("Duration was: " + d);
                     totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
                     completedTrips = completedTrips + 1;
                 }
 
             }
-            System.out.println("Averagetime " + totalTime.getSeconds() / completedTrips); /* de get.Seconds is een LONG
-        value en kan daarom mee gerekend worden in combinatie met INT */
             return totalTime.getSeconds() / completedTrips;
-
         } else {
-
             return 0;
-
         }
-
-
-
     }
+
 }
 
 

@@ -2,11 +2,9 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Random;
 
-public class Main {
+public class BoatTripDemo {
 
     public static void main(String[] args) throws InterruptedException, IOException {
-        Random rand = new Random();
-
         // Weer informatie
         WeatherInfo weather = new WeatherInfo();
         weather.updateWeatherData();
@@ -16,6 +14,7 @@ public class Main {
         } else {
             System.out.println("Het regent niet.");
         }
+        System.out.println();
 
         if (weather.getTemperature() > 0) {
             System.out.println("Temperatuur: " + weather.getTemperature() + " graden celsius");
@@ -25,7 +24,7 @@ public class Main {
 
         LocalDateTime currentTime = LocalDateTime.now();
 
-        TripManager manager = new TripManager();
+        BoatTripManager manager = new BoatTripManager();
 
         //Maak een aantal nieuwe trips | Laat tripnumber en begintijd zien
         for (int i = 0; i < 2; i++) {
