@@ -13,6 +13,16 @@ public class BoatTrip {
         tripNumber = identifier;
     }
 
+    public LocalDateTime getDuration() {
+        if (true) { // if rivertrip
+           return LocalDateTime.now().minusMinutes(30);
+
+        } else {
+
+            return this.startTime;
+        }
+    }
+
     //Getter endTime
     public LocalDateTime getEndTime() {
         return this.endTime;
@@ -47,6 +57,10 @@ public class BoatTrip {
 
     public void setTripPrice(double price) {
         this.tripPrice = price;
+    }
+
+    public void setTripPrice1(double tripPrice) {
+        this.tripPrice = tripPrice;
     }
 
 }
