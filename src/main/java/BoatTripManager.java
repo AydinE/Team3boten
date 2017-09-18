@@ -18,7 +18,7 @@ public class BoatTripManager {
         int identifier = trips.size() + 1;
       
         BoatTrip boatTrip ;
-        if (true) { // if rivertrip has to be included yes
+        if (tripType == TripType.RIVER_TRIP){
             boatTrip = new BoatTrip(LocalDateTime.now().plusMinutes(30), identifier, tripType);
         } else {
             boatTrip = new BoatTrip(LocalDateTime.now(), identifier, tripType);
