@@ -49,8 +49,4 @@ public class BoatTrip {
         this.tripPrice = price;
     }
 
-    public void setTripPrice1(double tripPrice) {
-        this.tripPrice = tripPrice;
-    }
-
 }
