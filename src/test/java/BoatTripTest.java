@@ -17,7 +17,7 @@ public class BoatTripTest {
 
     @Before
     public void initialize() {
-        boatTrip = new BoatTrip(startTime, tripNumber);
+        boatTrip = new BoatTrip(startTime, tripNumber, TripType.RIVER_TRIP);
     }
 
     @Test

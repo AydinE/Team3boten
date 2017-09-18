@@ -14,13 +14,13 @@ public class BoatTripManager {
 
 
     // Start a new boattrip
-    public int createTrip() {
+    public BoatTrip createTrip(TripType tripType) {
 
         int identifier = trips.size() + 1;
-        BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
+        BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier, tripType);
         trips.add(boatTrip); // variabele wordt toegevoegd in het lijstje voor trips. Zo alle trips centraal op 1 plaats.
 
-        return identifier;
+        return boatTrip;
     }
 
     // End a boattrip

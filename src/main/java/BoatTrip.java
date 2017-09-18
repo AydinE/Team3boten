@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 //BoatTrip
 public class BoatTrip {
@@ -7,10 +8,23 @@ public class BoatTrip {
     private int tripNumber;
     private LocalDateTime endTime;
     private double tripPrice;
+    private TripType tripType;
 
-    public BoatTrip(LocalDateTime currentTime, int identifier) {
+    public BoatTrip(LocalDateTime currentTime, int identifier, TripType tripType) {
         startTime = currentTime;
         tripNumber = identifier;
+        this.tripType = tripType;
+    }
+
+
+    public void printTicket() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
+        System.out.println();
+        System.out.println("Trip type: " + getTripType());
+        System.out.println("Trip number: " + getTripNumber());
+        System.out.println("Trip start time: " + getStartTime().format(formatter));
+
+
     }
 
     //Getter endTime
@@ -33,20 +47,28 @@ public class BoatTrip {
         this.startTime = dateTime;
     }
 
+    // Getter tripNumber
     public int getTripNumber() {
         return this.tripNumber;
     }
 
+    // Setter tripNumber
     public void setTripNumber(int number) {
         this.tripNumber = number;
     }
-
+    // Getter tripPrice
     public double getTripPrice() {
         return this.tripPrice;
     }
 
+    // Setter tripPrice
     public void setTripPrice(double price) {
         this.tripPrice = price;
     }
 
+    //Getter tripType
+    public TripType getTripType() {return this.tripType; }
+
+    //Setter tripType
+    public void setTripType(TripType tripType) { this.tripType = tripType; }
 }
