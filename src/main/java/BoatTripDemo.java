@@ -70,5 +70,13 @@ public class BoatTripDemo {
         sb.append((int) minutes + " minutes");
         System.out.println(sb.toString());
         System.out.println();
+
+
+//        Code wordt later geimplementeerd
+//        BoatTrip durationBoatTrip = durationOfBoatTrip;
+//
+//        double durationOfBoatTrip = ((durationOfBoatTrip % 3600) / 60);
+//        System.out.println(durationOfBoatTrip);
+
     }
 }
