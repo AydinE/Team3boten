@@ -17,7 +17,14 @@ public class BoatTripManager {
     public int createTrip() {
 
         int identifier = trips.size() + 1;
-        BoatTrip boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
+        BoatTrip boatTrip ;
+
+        if (true) { // if rivertrip has to be included yes
+            boatTrip = new BoatTrip(LocalDateTime.now().plusMinutes(30), identifier);
+        } else {
+            boatTrip = new BoatTrip(LocalDateTime.now(), identifier);
+        }
+
         trips.add(boatTrip); // variabele wordt toegevoegd in het lijstje voor trips. Zo alle trips centraal op 1 plaats.
 
         return identifier;

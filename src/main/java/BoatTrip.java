@@ -13,16 +13,6 @@ public class BoatTrip {
         tripNumber = identifier;
     }
 
-    public LocalDateTime getDuration() {
-        if (true) { // if rivertrip
-           return LocalDateTime.now().minusMinutes(30);
-
-        } else {
-
-            return this.startTime;
-        }
-    }
-
     //Getter endTime
     public LocalDateTime getEndTime() {
         return this.endTime;
