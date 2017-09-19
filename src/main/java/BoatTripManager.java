@@ -32,10 +32,8 @@ public class BoatTripManager {
         if (availableBoats.isEmpty()) {
             throw new NoAvailableBoatsException("No available boats");
         }
-
-        int identifier = currentTrips.size() + pastTrips.size() + 1;
       
-        BoatTrip boatTrip = new BoatTrip(identifier, tripType, availableBoats.get(0));
+        BoatTrip boatTrip = new BoatTrip((currentTrips.size() + pastTrips.size() + 1), tripType, availableBoats.get(0));
         boatTrip.start();
         availableBoats.remove(0);
         currentTrips.add(boatTrip); // variabele wordt toegevoegd in het lijstje voor trips. Zo alle trips centraal op 1 plaats.
