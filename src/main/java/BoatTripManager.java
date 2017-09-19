@@ -84,7 +84,7 @@ public class BoatTripManager {
     }
 
     //Average trip time
-    public long averageTripTime() {
+    public long averageTripTime()throws BoatTripException {
 
         int completedTrips = 0;
         Duration totalTime = Duration.ZERO;
@@ -93,7 +93,7 @@ public class BoatTripManager {
             for (int i = 0; i < pastTrips.size(); i++) {
                 BoatTrip trip = pastTrips.get(i);
                 if (trip.getEndTime() != null) {
-                    totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
+                    totalTime = totalTime.plus(trip.getDuration()); // Hij slaat het hem nu op in variabele totalTime.
                     completedTrips = completedTrips + 1;
                 }
 
