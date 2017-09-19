@@ -9,11 +9,13 @@ public class BoatTrip {
     private LocalDateTime endTime;
     private double tripPrice;
     private BoatTripType tripType;
+    private int boatNumber;
 
-    public BoatTrip(LocalDateTime currentTime, int identifier, BoatTripType tripType) {
-        startTime = currentTime;
-        tripNumber = identifier;
+    public BoatTrip(LocalDateTime currentTime, int identifier, BoatTripType tripType, int boatNumnber) {
+        this.startTime = currentTime;
+        this.tripNumber = identifier;
         this.tripType = tripType;
+        this.boatNumber = boatNumber;
     }
 
 
@@ -71,4 +73,14 @@ public class BoatTrip {
 
     //Setter tripType
     public void setTripType(BoatTripType tripType) { this.tripType = tripType; }
+
+    // Getter boatNumber
+    public int getBoatNumber() {
+        return this.boatNumber;
+    }
+
+    // Setter tripPrice
+    public void setBoatNumber(int boatNumber) {
+        this.boatNumber = boatNumber;
+    }
 }
