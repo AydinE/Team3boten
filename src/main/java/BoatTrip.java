@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -29,13 +30,21 @@ public class BoatTrip {
         tripPrice = priceCalculator.calculateTripPrice(this);
     }
 
+    public Duration getDuration() throws BoatTripException{
+
+        if (endTime.equals(null)) {
+            throw new BoatTripException("No endtime known");
+        }
+        Duration duration = Duration.between(startTime, endTime);
+        return duration;
+    }
+
     public void printTicket() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
         System.out.println();
         System.out.println("Trip type: " + getTripType());
         System.out.println("Trip number: " + getTripNumber());
         System.out.println("Trip start time: " + getStartTime().format(formatter));
-
 
     }
 
