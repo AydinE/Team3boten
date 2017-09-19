@@ -4,18 +4,28 @@ import java.time.format.DateTimeFormatter;
 //BoatTrip
 public class BoatTrip {
 
+    private static final BoatTripPriceCalculator priceCalculator = new BoatTripPriceCalculator();
+
     private LocalDateTime startTime;
     private int tripNumber;
     private LocalDateTime endTime;
     private double tripPrice;
     private TripType tripType;
 
-    public BoatTrip(LocalDateTime currentTime, int identifier, TripType tripType) {
-        startTime = currentTime;
+    public BoatTrip(int identifier, TripType tripType) {
         tripNumber = identifier;
         this.tripType = tripType;
     }
 
+    public void start() {
+        startTime = tripType.getStartTime(LocalDateTime.now());
+    }
+
+    public void stop() {
+        endTime = LocalDateTime.now();
+        priceCalculator.updateWeather();
+        tripPrice = priceCalculator.calculateTripPrice(this);
+    }
 
     public void printTicket() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
@@ -23,8 +33,6 @@ public class BoatTrip {
         System.out.println("Trip type: " + getTripType());
         System.out.println("Trip number: " + getTripNumber());
         System.out.println("Trip start time: " + getStartTime().format(formatter));
-
-
     }
 
     //Getter endTime

@@ -5,7 +5,7 @@ public class BoatTripDemo {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         // Weer informatie
-        WeatherInfo weather = new WeatherInfo();
+        Weather weather = new Weather();
         weather.updateWeatherData();
 
         if (weather.isRaining()) {

@@ -17,7 +17,7 @@ public class BoatTripTest {
 
     @Before
     public void initialize() {
-        boatTrip = new BoatTrip(startTime, tripNumber, TripType.RIVER_TRIP);
+        boatTrip = new BoatTrip(tripNumber, TripType.LAKE_TRIP);
     }
 
     @Test
@@ -31,11 +31,6 @@ public class BoatTripTest {
     public void setEndTime() throws Exception {
         boatTrip.setEndTime(endTime);
         assertEquals(endTime, boatTrip.getEndTime());
-    }
-
-    @Test
-    public void getStartTime() throws Exception {
-        assertEquals(startTime, boatTrip.getStartTime());
     }
 
     @Test

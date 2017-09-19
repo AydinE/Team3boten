@@ -13,15 +13,15 @@ import static org.junit.Assert.*;
 
 public class TripManagerTest {
 
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-
     private BoatTripManager tripManager;
+    private BoatTripPriceCalculator calculator;
 
 
     @Before
     public void initialize() {
         tripManager = new BoatTripManager();
+        calculator = new BoatTripPriceCalculator();
         System.setOut(new PrintStream(outContent));
     }
 
@@ -37,7 +37,7 @@ public class TripManagerTest {
     @Test
     public void createTrip() throws Exception {
         assertEquals(0, tripManager.getBoatTrips().size());
-        tripManager.createTrip(TripType.RIVER_TRIP);
+        tripManager.createTrip(TripType.LAKE_TRIP);
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         assertEquals(1, boatTrip.getTripNumber());
         assertEquals(1, tripManager.getBoatTrips().size());
@@ -46,7 +46,7 @@ public class TripManagerTest {
 
     @Test
     public void endTrip() throws Exception {
-        tripManager.createTrip(TripType.RIVER_TRIP);
+        tripManager.createTrip(TripType.LAKE_TRIP);
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         assertEquals(null, boatTrip.getEndTime());
         tripManager.endTrip(1);
@@ -55,7 +55,7 @@ public class TripManagerTest {
 
     @Test
     public void endTripInvalidTripNumber() throws Exception {
-        tripManager.createTrip(TripType.RIVER_TRIP);
+        tripManager.createTrip(TripType.LAKE_TRIP);
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         tripManager.endTrip(4);
         assertTrue(outContent.toString().equals("wrong number\r\n"));
@@ -63,12 +63,12 @@ public class TripManagerTest {
 
     @Test
     public void getBoatTrips() throws Exception {
-        tripManager.createTrip(TripType.RIVER_TRIP);
+        tripManager.createTrip(TripType.LAKE_TRIP);
         int boatTripCount = tripManager.getBoatTrips().size();
         assertEquals(1, boatTripCount);
         tripManager.endTrip(1);
         assertEquals(1, boatTripCount);
-        tripManager.createTrip(TripType.RIVER_TRIP);
+        tripManager.createTrip(TripType.LAKE_TRIP);
         tripManager.endTrip(2);
         boatTripCount = tripManager.getBoatTrips().size();
         assertEquals(2, boatTripCount);
@@ -83,7 +83,7 @@ public class TripManagerTest {
     @Test
     public void endExistingTripTest() {
         BoatTripManager t = new BoatTripManager();
-        BoatTrip trip = t.createTrip(TripType.RIVER_TRIP);
+        BoatTrip trip = t.createTrip(TripType.LAKE_TRIP);
         boolean result = t.endTrip(trip.getTripNumber());
         Assert.assertTrue(result); // assert=verwachting
     }
@@ -98,8 +98,8 @@ public class TripManagerTest {
     @Test
     public void tripsTestAverageTime() throws InterruptedException {
         BoatTripManager a1 = new BoatTripManager();
-        a1.createTrip(TripType.RIVER_TRIP);
-        a1.createTrip(TripType.RIVER_TRIP);
+        a1.createTrip(TripType.LAKE_TRIP);
+        a1.createTrip(TripType.LAKE_TRIP);
         a1.endTrip(1);
         a1.endTrip(2);
         // Pas eindtijd aan omdat er anders geen verschil tussen start en eindtijd zit.
@@ -111,97 +111,97 @@ public class TripManagerTest {
 
     @Test
     public void endTripPriceCalculator26rain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1, TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(26));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((14), price, 0);
     }
 
     @Test
     public void endTripPriceCalculator26norain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1,  TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(26));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((16), price, 0);
     }
 
     @Test
     public void endTripPriceCalculator16rain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1,  TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(16));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((8), price, 0);
     }
 
     @Test
     public void endTripPriceCalculator19rain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1, TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(19));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((12), price, 0);
     }
 
     @Test
     public void endTripPriceCalculator16norain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1, TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(16));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((10), price, 0);
     }
 
     @Test
     public void endTripPriceCalculator19norain() {
-        BoatTripPriceCalculator calculator = new BoatTripPriceCalculator();
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(now, 1, TripType.RIVER_TRIP);
+        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(19));
-        double price = calculator.calculateTripPrice(trip, weather);
+        double price = calculator.calculateTripPrice(trip);
         System.out.println("€ " + price);
         assertEquals((14), price, 0);
     }
 
     @Test
     public void endTripPriceCalculatorError() throws Exception {
-        WeatherInfo weather = tripManager.getWeather();
+        Weather weather = calculator.getWeather();
         weather.setApiURL("http://dsfsifusdfufdgdhfigiufdhfg.com");
         weather.updateWeatherData();
         assertEquals("Geen weerinformatie beschikbaar, kijk naar buiten voor actuele weer informatie\r\n", outContent.toString());
