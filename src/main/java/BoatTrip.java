@@ -1,3 +1,4 @@
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -27,6 +28,15 @@ public class BoatTrip {
         endTime = LocalDateTime.now();
         priceCalculator.updateWeather();
         tripPrice = priceCalculator.calculateTripPrice(this);
+    }
+
+    public Duration getDuration() throws BoatTripException{
+
+        if (endTime.equals(null)) {
+            throw new BoatTripException("Geen eindtijd");
+        }
+        Duration duration = Duration.between(startTime, endTime);
+        return duration;
     }
 
     public void printTicket() {

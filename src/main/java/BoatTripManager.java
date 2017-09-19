@@ -82,7 +82,6 @@ public class BoatTripManager {
             for (int i = 0; i < pastTrips.size(); i++) {
                 BoatTrip trip = pastTrips.get(i);
                 if (trip.getEndTime() != null) {
-                    Duration d = Duration.between(trip.getStartTime(), trip.getEndTime());
                     totalTime = totalTime.plus(d); // Hij slaat het hem nu op in variabele totalTime.
                     completedTrips = completedTrips + 1;
                 }
