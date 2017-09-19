@@ -27,12 +27,10 @@ public class BoatTripManager {
     }
 
     // Start a new boattrip
-    public BoatTrip createTrip(BoatTripType tripType) {
+    public BoatTrip createTrip(BoatTripType tripType) throws NoAvailableBoatsException {
         //Check to see if there are available boats
         if (availableBoats.isEmpty()) {
-            // TODO: Exception
-            System.out.println("No available trips");
-            return null;
+            throw new NoAvailableBoatsException("No available boats");
         }
 
         int identifier = currentTrips.size() + pastTrips.size() + 1;
