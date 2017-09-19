@@ -28,7 +28,7 @@ public class BoatTripDemo {
         //Maak een aantal nieuwe trips | Laat tripnumber en begintijd zien
         for (int i = 0; i < 2; i++) {
 
-            BoatTrip trip = manager.createTrip(TripType.RIVER_TRIP);
+            BoatTrip trip = manager.createTrip(BoatTripType.RIVER_TRIP);
             LocalDateTime startTime = trip.getStartTime();
             trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
             trip.printTicket();
@@ -41,7 +41,7 @@ public class BoatTripDemo {
         System.out.println();
         for (int i = 0; i < 2; i++) {
 
-            BoatTrip trip = manager.createTrip(TripType.LAKE_TRIP);
+            BoatTrip trip = manager.createTrip(BoatTripType.LAKE_TRIP);
             LocalDateTime startTime = trip.getStartTime();
             trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
             trip.printTicket();

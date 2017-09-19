@@ -34,6 +34,11 @@ public class BoatTripTest {
     }
 
     @Test
+    public void getStartTime() throws Exception {
+        assertEquals(startTime, boatTrip.getStartTime());
+    }
+
+    @Test
     public void setStartTime() throws Exception {
         boatTrip.setStartTime(startTime);
         assertEquals(startTime, boatTrip.getStartTime());

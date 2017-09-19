@@ -10,11 +10,13 @@ public class BoatTrip {
     private int tripNumber;
     private LocalDateTime endTime;
     private double tripPrice;
-    private TripType tripType;
+    private BoatTripType tripType;
+    private int boatNumber;
 
-    public BoatTrip(int identifier, TripType tripType) {
+    public BoatTrip(int identifier, BoatTripType tripType, int boatNumber) {
         tripNumber = identifier;
         this.tripType = tripType;
+        this.boatNumber = boatNumber;
     }
 
     public void start() {
@@ -33,6 +35,8 @@ public class BoatTrip {
         System.out.println("Trip type: " + getTripType());
         System.out.println("Trip number: " + getTripNumber());
         System.out.println("Trip start time: " + getStartTime().format(formatter));
+
+
     }
 
     //Getter endTime
@@ -75,8 +79,18 @@ public class BoatTrip {
     }
 
     //Getter tripType
-    public TripType getTripType() {return this.tripType; }
+    public BoatTripType getTripType() {return this.tripType; }
 
     //Setter tripType
-    public void setTripType(TripType tripType) { this.tripType = tripType; }
+    public void setTripType(BoatTripType tripType) { this.tripType = tripType; }
+
+    // Getter boatNumber
+    public int getBoatNumber() {
+        return this.boatNumber;
+    }
+
+    // Setter tripPrice
+    public void setBoatNumber(int boatNumber) {
+        this.boatNumber = boatNumber;
+    }
 }

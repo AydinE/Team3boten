@@ -1,11 +1,11 @@
 import java.time.LocalDateTime;
 
-public enum TripType {
+public enum BoatTripType {
     RIVER_TRIP(30), LAKE_TRIP(0);
 
     private int offset;
 
-    TripType(int offset) {
+    BoatTripType(int offset) {
         this.offset = offset;
     }
 
