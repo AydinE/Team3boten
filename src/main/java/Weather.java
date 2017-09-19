@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.math.BigDecimal;
 import java.net.URL;
 
-public class WeatherInfo {
+public class Weather {
 
     private boolean raining;
     private BigDecimal temperature = new BigDecimal(0);

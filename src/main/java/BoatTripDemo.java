@@ -1,12 +1,11 @@
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.Random;
 
 public class BoatTripDemo {
 
     public static void main(String[] args) throws InterruptedException, IOException {
         // Weer informatie
-        WeatherInfo weather = new WeatherInfo();
+        Weather weather = new Weather();
         weather.updateWeatherData();
 
         if (weather.isRaining()) {
@@ -29,12 +28,11 @@ public class BoatTripDemo {
         //Maak een aantal nieuwe trips | Laat tripnumber en begintijd zien
         for (int i = 0; i < 2; i++) {
 
-            int tripId = manager.createTrip();
-            BoatTrip trip = manager.getBoatTrips().get(tripId - 1);
+            BoatTrip trip = manager.createTrip(BoatTripType.RIVER_TRIP);
             LocalDateTime startTime = trip.getStartTime();
             trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
-            System.out.println("Trip number created: " + tripId);
-        }
+            trip.printTicket();
+    }
         System.out.println();
         for (int i = 0; i < 2; i++) {
 
@@ -43,11 +41,10 @@ public class BoatTripDemo {
         System.out.println();
         for (int i = 0; i < 2; i++) {
 
-            int tripId = manager.createTrip();
-            BoatTrip trip = manager.getBoatTrips().get(tripId - 1);
+            BoatTrip trip = manager.createTrip(BoatTripType.LAKE_TRIP);
             LocalDateTime startTime = trip.getStartTime();
             trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
-            System.out.println("Trip number created: " + tripId);
+            trip.printTicket();
 
         }
         System.out.println();
@@ -56,7 +53,7 @@ public class BoatTripDemo {
             manager.endTrip(i + 1);
         }
         System.out.println();
-        System.out.println("Total number of trips: " + manager.getBoatTrips().size());
+        System.out.println("Total number of trips: " + manager.getCompletedTrips().size());
 
         //End trip laat duur van trip zien.
 
@@ -73,5 +70,13 @@ public class BoatTripDemo {
         sb.append((int) minutes + " minutes");
         System.out.println(sb.toString());
         System.out.println();
+
+
+//        Code wordt later geimplementeerd
+//        BoatTrip durationBoatTrip = durationOfBoatTrip;
+//
+//        double durationOfBoatTrip = ((durationOfBoatTrip % 3600) / 60);
+//        System.out.println(durationOfBoatTrip);
+
     }
 }

@@ -2,10 +2,12 @@ import java.time.Duration;
 
 public class BoatTripPriceCalculator {
 
-    public double calculateTripPrice(BoatTrip trip, WeatherInfo weatherInfo) {
+    private Weather weather = new Weather();
+
+    public double calculateTripPrice(BoatTrip trip) {
         double hourlyPrice = 5;
-        double temperature = weatherInfo.getTemperature();
-        boolean isRaining = weatherInfo.isRaining();
+        double temperature = weather.getTemperature();
+        boolean isRaining = weather.isRaining();
 
         if( isRaining ){
             hourlyPrice = hourlyPrice - 1;
@@ -23,4 +25,15 @@ public class BoatTripPriceCalculator {
         return Math.round(hourlyPrice * (timeInMinutes / 60) * 100D) / 100D;
     }
 
+    public void updateWeather() {
+        weather.updateWeatherData();
+    }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
 }
