@@ -13,8 +13,6 @@ public class BoatTripManager {
 
     private int totalTrips = 0;
 
-    private WeatherInfo weather = new WeatherInfo();
-
     public BoatTripManager(){
 
         availableBoats.add(1);
@@ -31,10 +29,12 @@ public class BoatTripManager {
     }
 
     // Start a new boattrip
-    public BoatTrip createTrip(BoatTripType tripType) throws Exception {
+    public BoatTrip createTrip(BoatTripType tripType) {
         //Check to see if there are available boats
         if (availableBoats.isEmpty()) {
-            throw new Exception();
+            // TODO: Exception
+            System.out.println("No available trips");
+            return null;
         }
 
         int identifier = totalTrips + 1;

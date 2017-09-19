@@ -37,7 +37,7 @@ public class TripManagerTest {
     @Test
     public void createTrip() throws Exception {
         assertEquals(0, tripManager.getBoatTrips().size());
-        tripManager.createTrip(TripType.LAKE_TRIP);
+        tripManager.createTrip(BoatTripType.LAKE_TRIP);
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         assertEquals(1, boatTrip.getTripNumber());
         assertEquals(1, tripManager.getBoatTrips().size());
@@ -46,7 +46,7 @@ public class TripManagerTest {
 
     @Test
     public void endTrip() throws Exception {
-        tripManager.createTrip(TripType.LAKE_TRIP);
+        BoatTrip trip = tripManager.createTrip(BoatTripType.LAKE_TRIP);
         BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
         assertEquals(null, boatTrip.getEndTime());
         tripManager.endTrip(1);
@@ -55,20 +55,19 @@ public class TripManagerTest {
 
     @Test
     public void endTripInvalidTripNumber() throws Exception {
-        tripManager.createTrip(TripType.LAKE_TRIP);
-        BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
+        tripManager.createTrip(BoatTripType.LAKE_TRIP);
         tripManager.endTrip(4);
         assertTrue(outContent.toString().equals("wrong number\r\n"));
     }
 
     @Test
     public void getBoatTrips() throws Exception {
-        tripManager.createTrip(TripType.LAKE_TRIP);
+        tripManager.createTrip(BoatTripType.LAKE_TRIP);
         int boatTripCount = tripManager.getBoatTrips().size();
         assertEquals(1, boatTripCount);
         tripManager.endTrip(1);
         assertEquals(1, boatTripCount);
-        tripManager.createTrip(TripType.LAKE_TRIP);
+        tripManager.createTrip(BoatTripType.LAKE_TRIP);
         tripManager.endTrip(2);
         boatTripCount = tripManager.getBoatTrips().size();
         assertEquals(2, boatTripCount);
@@ -83,7 +82,7 @@ public class TripManagerTest {
     @Test
     public void endExistingTripTest() {
         BoatTripManager t = new BoatTripManager();
-        BoatTrip trip = t.createTrip(TripType.LAKE_TRIP);
+        BoatTrip trip = t.createTrip(BoatTripType.LAKE_TRIP);
         boolean result = t.endTrip(trip.getTripNumber());
         Assert.assertTrue(result); // assert=verwachting
     }
@@ -98,8 +97,8 @@ public class TripManagerTest {
     @Test
     public void tripsTestAverageTime() throws InterruptedException {
         BoatTripManager a1 = new BoatTripManager();
-        a1.createTrip(TripType.LAKE_TRIP);
-        a1.createTrip(TripType.LAKE_TRIP);
+        a1.createTrip(BoatTripType.LAKE_TRIP);
+        a1.createTrip(BoatTripType.LAKE_TRIP);
         a1.endTrip(1);
         a1.endTrip(2);
         // Pas eindtijd aan omdat er anders geen verschil tussen start en eindtijd zit.
@@ -113,7 +112,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator26rain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
@@ -128,7 +127,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator26norain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
@@ -143,7 +142,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator16rain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
@@ -158,7 +157,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator19rain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
@@ -173,7 +172,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator16norain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
@@ -188,7 +187,7 @@ public class TripManagerTest {
     public void endTripPriceCalculator19norain() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
-        BoatTrip trip = new BoatTrip(1, TripType.LAKE_TRIP);
+        BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
         LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
