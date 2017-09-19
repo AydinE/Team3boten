@@ -53,7 +53,7 @@ public class BoatTripDemo {
             manager.endTrip(i + 1);
         }
         System.out.println();
-        System.out.println("Total number of trips: " + manager.getBoatTrips().size());
+        System.out.println("Total number of trips: " + manager.getCompletedTrips().size());
 
         //End trip laat duur van trip zien.
 

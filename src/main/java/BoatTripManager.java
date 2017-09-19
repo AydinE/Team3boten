@@ -11,8 +11,6 @@ public class BoatTripManager {
     private ArrayList<BoatTrip> currentTrips = new ArrayList<>();
     private ArrayList<BoatTrip> pastTrips = new ArrayList<>();
 
-    private int totalTrips = 0;
-
     public BoatTripManager(){
 
         availableBoats.add(1);
@@ -37,7 +35,7 @@ public class BoatTripManager {
             return null;
         }
 
-        int identifier = totalTrips + 1;
+        int identifier = currentTrips.size() + pastTrips.size() + 1;
       
         BoatTrip boatTrip = new BoatTrip(identifier, tripType, availableBoats.get(0));
         boatTrip.start();
@@ -65,9 +63,12 @@ public class BoatTripManager {
         return false;
     }
 
-    // Return list of trips
-    public List<BoatTrip> getBoatTrips() {
+    public List<BoatTrip> getActiveTrips() {
+        return currentTrips;
+    }
 
+    // Return list of trips
+    public List<BoatTrip> getCompletedTrips() {
         return pastTrips;
     }
 

@@ -36,20 +36,20 @@ public class TripManagerTest {
 
     @Test
     public void createTrip() throws Exception {
-        assertEquals(0, tripManager.getBoatTrips().size());
+        assertEquals(0, tripManager.getCompletedTrips().size());
         tripManager.createTrip(BoatTripType.LAKE_TRIP);
-        BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
+        BoatTrip boatTrip = tripManager.getActiveTrips().get(0);
         assertEquals(1, boatTrip.getTripNumber());
-        assertEquals(1, tripManager.getBoatTrips().size());
+        assertEquals(1, tripManager.getActiveTrips().size());
         assertNotEquals(null, boatTrip.getStartTime());
     }
 
     @Test
     public void endTrip() throws Exception {
         BoatTrip trip = tripManager.createTrip(BoatTripType.LAKE_TRIP);
-        BoatTrip boatTrip = tripManager.getBoatTrips().get(0);
-        assertEquals(null, boatTrip.getEndTime());
-        tripManager.endTrip(1);
+        assertEquals(null, trip.getEndTime());
+        BoatTrip boatTrip = tripManager.getActiveTrips().get(0);
+        tripManager.endTrip(trip.getTripNumber());
         assertNotEquals(null, boatTrip.getEndTime());
     }
 
@@ -63,14 +63,11 @@ public class TripManagerTest {
     @Test
     public void getBoatTrips() throws Exception {
         tripManager.createTrip(BoatTripType.LAKE_TRIP);
-        int boatTripCount = tripManager.getBoatTrips().size();
-        assertEquals(1, boatTripCount);
+        assertEquals(1, tripManager.getActiveTrips().size());
+        assertEquals(0, tripManager.getCompletedTrips().size());
         tripManager.endTrip(1);
-        assertEquals(1, boatTripCount);
-        tripManager.createTrip(BoatTripType.LAKE_TRIP);
-        tripManager.endTrip(2);
-        boatTripCount = tripManager.getBoatTrips().size();
-        assertEquals(2, boatTripCount);
+        assertEquals(0, tripManager.getActiveTrips().size());
+        assertEquals(1, tripManager.getCompletedTrips().size());
     }
 
     @After
@@ -102,7 +99,7 @@ public class TripManagerTest {
         a1.endTrip(1);
         a1.endTrip(2);
         // Pas eindtijd aan omdat er anders geen verschil tussen start en eindtijd zit.
-        List<BoatTrip> trips = a1.getBoatTrips();
+        List<BoatTrip> trips = a1.getCompletedTrips();
         trips.get(0).setEndTime(LocalDateTime.now().minusMinutes(35));
         trips.get(1).setEndTime(LocalDateTime.now().minusMinutes(35));
         Assert.assertNotEquals(0, a1.averageTripTime());
