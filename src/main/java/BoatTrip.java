@@ -33,7 +33,7 @@ public class BoatTrip {
     public Duration getDuration() throws BoatTripException{
 
         if (endTime.equals(null)) {
-            throw new BoatTripException("Geen eindtijd");
+            throw new BoatTripException("No endtime known");
         }
         Duration duration = Duration.between(startTime, endTime);
         return duration;
@@ -45,7 +45,6 @@ public class BoatTrip {
         System.out.println("Trip type: " + getTripType());
         System.out.println("Trip number: " + getTripNumber());
         System.out.println("Trip start time: " + getStartTime().format(formatter));
-
 
     }
 
