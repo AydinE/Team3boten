@@ -24,10 +24,18 @@ public class BoatTrip {
         startTime = tripType.getStartTime(LocalDateTime.now());
     }
 
-    public void stop() {
+    public void stop(Boat boat) throws BoatTripException {
         endTime = LocalDateTime.now();
         priceCalculator.updateWeather();
         tripPrice = priceCalculator.calculateTripPrice(this);
+
+        // Check to see if inspection is needed
+        Duration passedTime = boat.getTimeSinceLastInspection().plus(getDuration());
+        boat.setTimeSinceLastInspection(passedTime);
+        if (passedTime.getSeconds() > 10800) {
+            System.out.println("Inspectie nodig op bootNr: " + boat.getBoatNumber());
+        }
+
     }
 
     public Duration getDuration() throws BoatTripException{

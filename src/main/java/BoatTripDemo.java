@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 public class BoatTripDemo {
 
-    public static void main(String[] args) throws InterruptedException, IOException {
+    public static void main(String[] args) throws InterruptedException, IOException, BoatTripException {
         // Weer informatie
         Weather weather = new Weather();
         weather.updateWeatherData();

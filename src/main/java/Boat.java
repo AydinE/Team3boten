@@ -3,7 +3,7 @@ import java.time.Duration;
 public class Boat {
 
     private int boatNumber;
-    Duration timeSinceLastInspection;
+    private Duration timeSinceLastInspection;
 
     public Boat(int boatNumber){
         this.boatNumber = boatNumber;
@@ -20,4 +20,5 @@ public class Boat {
     public void setTimeSinceLastInspection(Duration timeSinceLastInspection) {
         this.timeSinceLastInspection = timeSinceLastInspection;
     }
+
 }
