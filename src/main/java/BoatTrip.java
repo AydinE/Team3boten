@@ -1,3 +1,5 @@
+import com.sun.org.apache.xalan.internal.xsltc.compiler.util.CompareGenerator;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -36,7 +38,11 @@ public class BoatTrip {
             throw new BoatTripException("No endtime known");
         }
         Duration duration = Duration.between(startTime, endTime);
-        return duration;
+        {
+            if (startTime.compareTo(endTime) < 0) ;
+            System.out.println("Duration can not be lower then 0 minutes");
+        }
+    return duration;
     }
 
     public void printTicket() {
