@@ -27,7 +27,7 @@ public class TripManagerTest {
 
     // Userstory 5
     @Test
-    public void noTripsTestAverageTime() throws InterruptedException {
+    public void noTripsTestAverageTime() throws Exception {
         BoatTripManager a = new BoatTripManager(); // Nu kan je bij de tripmanager.
         Assert.assertEquals(0, a.averageTripTime());
 
@@ -77,7 +77,7 @@ public class TripManagerTest {
 
     // Userstory 2
     @Test
-    public void endExistingTripTest() {
+    public void endExistingTripTest() throws Exception {
         BoatTripManager t = new BoatTripManager();
         BoatTrip trip = t.createTrip(BoatTripType.LAKE_TRIP);
         boolean result = t.endTrip(trip.getTripNumber());
@@ -85,14 +85,14 @@ public class TripManagerTest {
     }
 
     @Test
-    public void endTripWrongNumberTest() {
+    public void endTripWrongNumberTest() throws Exception{
         BoatTripManager t = new BoatTripManager();
         boolean result = t.endTrip(2);
         Assert.assertFalse(result); // assert=verwachting
     }
 
     @Test
-    public void tripsTestAverageTime() throws InterruptedException {
+    public void tripsTestAverageTime() throws Exception {
         BoatTripManager a1 = new BoatTripManager();
         a1.createTrip(BoatTripType.LAKE_TRIP);
         a1.createTrip(BoatTripType.LAKE_TRIP);

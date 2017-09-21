@@ -2,28 +2,29 @@ import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BoatTripManager {
 
-    private List<Boat> availableBoats = new ArrayList<>();
-    private List<Boat> boatsOnTrip = new ArrayList<>();
+    private HashMap<Integer, Boat> availableBoats = new HashMap<>();
+    private HashMap<Integer, Boat> boatsOnTrip = new HashMap<>();
 
-    private ArrayList<BoatTrip> currentTrips = new ArrayList<>();
-    private ArrayList<BoatTrip> pastTrips = new ArrayList<>();
+    private HashMap<Integer, BoatTrip> currentTrips = new HashMap<>();
+    private HashMap<Integer, BoatTrip> pastTrips = new HashMap<>();
 
     public BoatTripManager(){
 
-        availableBoats.add(new Boat(1));
-        availableBoats.add(new Boat(2));
-        availableBoats.add(new Boat(3));
-        availableBoats.add(new Boat(5));
-        availableBoats.add(new Boat(6));
-        availableBoats.add(new Boat(7));
-        availableBoats.add(new Boat(8));
-        availableBoats.add(new Boat(9));
-        availableBoats.add(new Boat(10));
-        availableBoats.add(new Boat(12));
+        availableBoats.put(1, new Boat(1));
+        availableBoats.put(2, new Boat(2));
+        availableBoats.put(3, new Boat(3));
+        availableBoats.put(5, new Boat(5));
+        availableBoats.put(6, new Boat(6));
+        availableBoats.put(7, new Boat(7));
+        availableBoats.put(8, new Boat(8));
+        availableBoats.put(9, new Boat(9));
+        availableBoats.put(10, new Boat(10));
+        availableBoats.put(12, new Boat(12));
 
     }
 
@@ -37,49 +38,38 @@ public class BoatTripManager {
         BoatTrip boatTrip = new BoatTrip((currentTrips.size() + pastTrips.size() + 1), tripType, availableBoats.get(0).getBoatNumber());
         Boat boat = availableBoats.get(0);
         availableBoats.remove(boat);
-        boatsOnTrip.add(boat);
+        boatsOnTrip.put(boat.getBoatNumber(),boat);
         boatTrip.start();
-        currentTrips.add(boatTrip); // variabele wordt toegevoegd in het lijstje voor trips. Zo alle trips centraal op 1 plaats.
+        currentTrips.put(boatTrip.getTripNumber(), boatTrip); // variabele wordt toegevoegd in het lijstje voor trips. Zo alle trips centraal op 1 plaats.
 
         return boatTrip;
     }
 
     // End a boattrip
-    public boolean endTrip(int tripNumber) throws BoatTripException {
-        for (int i = 0; i < currentTrips.size(); i++) {
-            BoatTrip trip = currentTrips.get(i);
-            if (tripNumber == trip.getTripNumber()) {
-                trip.stop();
-                for (int j = 0; j < boatsOnTrip.size(); i++){
-                    if (boatsOnTrip.get(0).getBoatNumber() == trip.getBoatNumber()){
-                        Boat boat = boatsOnTrip.get(j);
-                        boatsOnTrip.remove(boat);
-                        availableBoats.add(boat);
-                        Duration timeSinceLastInspection = boat.getTimeSinceLastInspection().plus(trip.getDuration());
-                        if (timeSinceLastInspection.getSeconds() > 10800) {
-                            // Inspectie nodig
-                            System.out.println("Inspectie nodig op bootNr: " + boat.getBoatNumber());
-                        }
-                    }
-                }
-                currentTrips.remove(trip);
-                pastTrips.add(trip);
-                //availableBoats.add(trip.getBoatNumber());
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
-                System.out.println("Trip "+ tripNumber + " ended at: " + trip.getEndTime().format(formatter));
-                return true;
-            }
-        }
-        System.out.println("wrong number");
-        return false;
+    public void endTrip(int tripNumber) throws BoatTripException {
+
+        // If there is no trip with the given tripnumber throw exception.
+        if (currentTrips.get(tripNumber) == null) throw new BoatTripException();
+
+        BoatTrip trip = currentTrips.get(tripNumber);
+        Boat boat = boatsOnTrip.get(trip.getBoatNumber());
+        trip.stop(boat);
+        boatsOnTrip.remove(boat);
+        availableBoats.put(trip.getBoatNumber(), boat);
+        currentTrips.remove(trip);
+        pastTrips.put(tripNumber, trip);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
+        System.out.println("Trip "+ tripNumber + " ended at: " + trip.getEndTime().format(formatter));
+
     }
 
-    public List<BoatTrip> getActiveTrips() {
+    public HashMap<Integer, BoatTrip> getActiveTrips() {
         return currentTrips;
     }
 
     // Return list of trips
-    public List<BoatTrip> getCompletedTrips() {
+    public HashMap<Integer, BoatTrip> getCompletedTrips() {
         return pastTrips;
     }
 
