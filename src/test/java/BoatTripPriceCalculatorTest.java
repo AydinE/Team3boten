@@ -17,15 +17,20 @@ public class BoatTripPriceCalculatorTest {
     }
     /*
     Senario's and naming of the endTripPriceCalculator devided in Laketrips and RiverTrips:
-       Name    Senario's
-       LakeA = 26 degrees Celsius and its raining
-       LakeB = 16 degrees Celsius and its raining
-       LakeC = 19 degrees Celsius and its raining
-       LakeD = 26 degrees Celsius and its not raining
-       LakeE = 19 degrees Celsius and its not raining
-       LakeF = 16 degrees Celsius and its not raining
+       Name     Senario
+       LakeA  = 26 degrees Celsius and its raining
+       LakeB  = 16 degrees Celsius and its raining
+       LakeC  = 19 degrees Celsius and its raining
+       LakeD  = 26 degrees Celsius and its not raining
+       LakeE  = 19 degrees Celsius and its not raining
+       LakeF  = 16 degrees Celsius and its not raining
 
-
+       RiverA = 26 degrees Celsius and its raining
+       RiverB = 16 degrees Celsius and its raining
+       RiverC = 19 degrees Celsius and its raining
+       RiverD = 26 degrees Celsius and its not raining
+       RiverE = 19 degrees Celsius and its not raining
+       RiverF = 16 degrees Celsius and its not raining
      */
 
     @Test
@@ -44,7 +49,7 @@ public class BoatTripPriceCalculatorTest {
     }
 
     @Test
-    public void endTripPriceCalculatorLakeC() {
+    public void endTripPriceCalculatorLakeB() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
@@ -57,9 +62,9 @@ public class BoatTripPriceCalculatorTest {
         System.out.println("€ " + price);
         assertEquals((8), price, 0);
     }
-    
+
     @Test
-    public void endTripPriceCalculatorLakeD() {
+    public void endTripPriceCalculatorLakeC() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
@@ -74,7 +79,7 @@ public class BoatTripPriceCalculatorTest {
     }
 
     @Test
-    public void endTripPriceCalculatorLakeB() {
+    public void endTripPriceCalculatorLakeD() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
@@ -89,7 +94,7 @@ public class BoatTripPriceCalculatorTest {
     }
 
     @Test
-    public void endTripPriceCalculatorLakeF() {
+    public void endTripPriceCalculatorLakeE() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
@@ -104,7 +109,7 @@ public class BoatTripPriceCalculatorTest {
     }
 
     @Test
-    public void endTripPriceCalculatorLakeE() {
+    public void endTripPriceCalculatorLakeF() {
         Weather weather = calculator.getWeather();
         LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
