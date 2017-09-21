@@ -7,7 +7,8 @@ import java.util.List;
 
 public class BoatTripManager {
 
-    private HashMap<Integer, Boat> availableBoats = new HashMap<>();
+    private List<Boat> availableBoats = new ArrayList<>();
+    //private HashMap<Integer, Boat> availableBoats = new HashMap<>();
     private HashMap<Integer, Boat> boatsOnTrip = new HashMap<>();
 
     private HashMap<Integer, BoatTrip> currentTrips = new HashMap<>();
@@ -15,16 +16,16 @@ public class BoatTripManager {
 
     public BoatTripManager(){
 
-        availableBoats.put(1, new Boat(1));
-        availableBoats.put(2, new Boat(2));
-        availableBoats.put(3, new Boat(3));
-        availableBoats.put(5, new Boat(5));
-        availableBoats.put(6, new Boat(6));
-        availableBoats.put(7, new Boat(7));
-        availableBoats.put(8, new Boat(8));
-        availableBoats.put(9, new Boat(9));
-        availableBoats.put(10, new Boat(10));
-        availableBoats.put(12, new Boat(12));
+        availableBoats.add(new Boat(1));
+        availableBoats.add(new Boat(2));
+        availableBoats.add(new Boat(3));
+        availableBoats.add(new Boat(5));
+        availableBoats.add(new Boat(6));
+        availableBoats.add(new Boat(7));
+        availableBoats.add(new Boat(8));
+        availableBoats.add(new Boat(9));
+        availableBoats.add(new Boat(10));
+        availableBoats.add(new Boat(12));
 
     }
 
@@ -55,7 +56,7 @@ public class BoatTripManager {
         Boat boat = boatsOnTrip.get(trip.getBoatNumber());
         trip.stop(boat);
         boatsOnTrip.remove(boat);
-        availableBoats.put(trip.getBoatNumber(), boat);
+        availableBoats.add(boat);
         currentTrips.remove(trip);
         pastTrips.put(tripNumber, trip);
 
