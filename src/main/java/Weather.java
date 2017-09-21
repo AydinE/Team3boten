@@ -25,7 +25,7 @@ public class Weather {
                 JSONObject jsonObj = new JSONObject(output);
                 JSONObject main = jsonObj.getJSONObject("main");
                 JSONArray weather = jsonObj.getJSONArray("weather");
-                int weatherId = (int) weather.getJSONObject(0).get("id");
+                int weatherId =  (int) weather.getJSONObject(0).get("id");
 
                 //temperature = (double) main.get("temp");
                 temperature = new BigDecimal(String.valueOf(main.get("temp")));
