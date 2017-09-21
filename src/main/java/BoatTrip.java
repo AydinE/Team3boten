@@ -57,6 +57,7 @@ public class BoatTrip {
     }
 
     public void printEndTicket() throws BoatTripException {
+        Weather weather = priceCalculator.getWeather();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
         Duration duration = getDuration();
         System.out.println();
@@ -65,6 +66,7 @@ public class BoatTrip {
         System.out.println("Boat number: " + boatNumber);
         System.out.println("Trip end time: " + startTime.format(formatter));
         System.out.println("Trip duration: " + String.format("%d:%02d:%02d", duration.getSeconds() / 3600, (duration.getSeconds() % 3600) / 60, (duration.getSeconds() % 60)));
+        System.out.println("Weather: " + weather.getTemperature() + "°C, " + (weather.isRaining() ? "raining" : "no rain"));
         System.out.println("Trip price: € " + tripPrice);
     }
 
