@@ -33,12 +33,12 @@ public class BoatTrip {
         Duration passedTime = boat.getTimeSinceLastInspection().plus(getDuration());
         boat.setTimeSinceLastInspection(passedTime);
         if (passedTime.getSeconds() > 10800) {
-            System.out.println("Inspectie nodig op bootNr: " + boat.getBoatNumber());
+            System.out.println("Inspection needed for boat: " + boat.getBoatNumber());
         }
 
     }
 
-    public Duration getDuration() throws BoatTripException{
+    public Duration getDuration() throws BoatTripException {
 
         if (endTime.equals(null)) {
             throw new BoatTripException("No endtime known");
@@ -47,13 +47,25 @@ public class BoatTrip {
         return duration;
     }
 
-    public void printTicket() {
+    public void printStartTicket() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
         System.out.println();
-        System.out.println("Trip type: " + getTripType());
-        System.out.println("Trip number: " + getTripNumber());
-        System.out.println("Trip start time: " + getStartTime().format(formatter));
+        System.out.println("Trip " + tripNumber + " started");
+        System.out.println("Trip type: " + tripType);
+        System.out.println("Boat number: " + boatNumber);
+        System.out.println("Trip start time: " + startTime.format(formatter));
+    }
 
+    public void printEndTicket() throws BoatTripException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
+        Duration duration = getDuration();
+        System.out.println();
+        System.out.println("Trip " + tripNumber + " ended");
+        System.out.println("Trip type: " + tripType);
+        System.out.println("Boat number: " + boatNumber);
+        System.out.println("Trip end time: " + startTime.format(formatter));
+        System.out.println("Trip duration: " + String.format("%d:%02d:%02d", duration.getSeconds() / 3600, (duration.getSeconds() % 3600) / 60, (duration.getSeconds() % 60)));
+        System.out.println("Trip price: € " + tripPrice);
     }
 
     //Getter endTime
@@ -85,6 +97,7 @@ public class BoatTrip {
     public void setTripNumber(int number) {
         this.tripNumber = number;
     }
+
     // Getter tripPrice
     public double getTripPrice() {
         return this.tripPrice;
@@ -96,10 +109,14 @@ public class BoatTrip {
     }
 
     //Getter tripType
-    public BoatTripType getTripType() {return this.tripType; }
+    public BoatTripType getTripType() {
+        return this.tripType;
+    }
 
     //Setter tripType
-    public void setTripType(BoatTripType tripType) { this.tripType = tripType; }
+    public void setTripType(BoatTripType tripType) {
+        this.tripType = tripType;
+    }
 
     // Getter boatNumber
     public int getBoatNumber() {

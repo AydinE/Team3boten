@@ -55,14 +55,10 @@ public class BoatTripManager {
         BoatTrip trip = currentTrips.get(tripNumber);
         Boat boat = boatsOnTrip.get(trip.getBoatNumber());
         trip.stop(boat);
-        boatsOnTrip.remove(boat);
+        boatsOnTrip.remove(boat.getBoatNumber());
         availableBoats.add(boat);
-        currentTrips.remove(trip);
+        currentTrips.remove(trip.getTripNumber());
         pastTrips.put(tripNumber, trip);
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy HH:mm");
-        System.out.println("Trip "+ tripNumber + " ended at: " + trip.getEndTime().format(formatter));
-
     }
 
     public HashMap<Integer, BoatTrip> getActiveTrips() {
@@ -81,8 +77,7 @@ public class BoatTripManager {
         Duration totalTime = Duration.ZERO;
 
         if (pastTrips.size() > 0) {
-            for (int i = 0; i < pastTrips.size(); i++) {
-                BoatTrip trip = pastTrips.get(i);
+            for (BoatTrip trip : pastTrips.values()) {
                 if (trip.getEndTime() != null) {
                     totalTime = totalTime.plus(trip.getDuration()); // Hij slaat het hem nu op in variabele totalTime.
                     completedTrips = completedTrips + 1;
