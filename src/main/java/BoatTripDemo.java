@@ -1,5 +1,5 @@
-import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class BoatTripDemo {
 
@@ -14,7 +14,6 @@ public class BoatTripDemo {
             } else {
                 System.out.println("Het regent niet.");
             }
-            System.out.println();
 
             if (weather.getTemperature() > 0) {
                 System.out.println("Temperatuur: " + weather.getTemperature() + " graden celsius");
@@ -22,46 +21,27 @@ public class BoatTripDemo {
                 System.out.println("Geen weerinformatie beschikbaar.");
             }
 
-            LocalDateTime currentTime = LocalDateTime.now();
-
             BoatTripManager manager = new BoatTripManager();
+            for (BoatTripType type : BoatTripType.values()) {
+                BoatTrip trip = manager.createTrip(type);
+                LocalDateTime startTime = trip.getStartTime();
+                trip.setStartTime(startTime.minusHours((int) (Math.random() * 3 + 1)).minusMinutes((int) (Math.random() * 60)));
+                trip.printStartTicket();
+            }
 
-            //Maak een aantal nieuwe trips | Laat tripnumber en begintijd zien
+            System.out.println();
+            System.out.println("Total number of active trips: " + manager.getActiveTrips().size());
+            System.out.println("Total number of completed trips: " + manager.getCompletedTrips().size());
+
             for (int i = 0; i < 2; i++) {
-
-                try {
-                    BoatTrip trip = manager.createTrip(BoatTripType.RIVER_TRIP);
-                    LocalDateTime startTime = trip.getStartTime();
-                    trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
-                    trip.printTicket();
-                } catch (NoAvailableBoatsException ex) {
-                    System.out.println(ex);
-                }
+                BoatTrip trip = manager.getActiveTrips().get(i + 1);
+                manager.endTrip(trip.getTripNumber());
+                trip.printEndTicket();
             }
-            System.out.println();
-            for (int i = 0; i < 2; i++) {
 
-                manager.endTrip(i + 1);
-            }
             System.out.println();
-            for (int i = 0; i < 2; i++) {
-
-                try {
-                    BoatTrip trip = manager.createTrip(BoatTripType.LAKE_TRIP);
-                    LocalDateTime startTime = trip.getStartTime();
-                    trip.setStartTime(startTime.minusHours((int) (Math.random() * 3)).minusMinutes((int) (Math.random() * 60)));
-                    trip.printTicket();
-                } catch (NoAvailableBoatsException ex) {
-                    System.out.println(ex);
-                }
-
-            }
-            System.out.println();
-            for (int i = 2; i < 4; i++) {
-                manager.endTrip(i + 1);
-            }
-            System.out.println();
-            System.out.println("Total number of trips: " + manager.getCompletedTrips().size());
+            System.out.println("Total number of active trips: " + manager.getActiveTrips().size());
+            System.out.println("Total number of completed trips: " + manager.getCompletedTrips().size());
 
             //End trip laat duur van trip zien.
 
@@ -78,8 +58,10 @@ public class BoatTripDemo {
             System.out.println(sb.toString());
             System.out.println();
 
-        }catch(BoatTripException ex) {
+        } catch(BoatTripException ex) {
             System.out.println("No endtime known");
+        } catch(NoAvailableBoatsException ex) {
+            System.out.println("No boats available");
         }
 
 
