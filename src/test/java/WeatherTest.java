@@ -20,15 +20,14 @@ private Weather weather;
     @Test
     public void isRaining(){
 
-        assertEquals(false, weather.isRaining());
-        weather.setRaining(true);
+       weather.setRaining(true);
         assertEquals(true, weather.isRaining());
     }
 
     @Test
     public void getTemperature(){
         weather.setTemperature(BigDecimal.valueOf(30));
-        assertEquals(30, weather.getTemperature() );
+        assertEquals(30, weather.getTemperature(), 0.01 );
     }
 
 }
