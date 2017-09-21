@@ -9,11 +9,16 @@ import static org.junit.Assert.assertEquals;
 public class BoatTripPriceCalculatorTest {
 
     private BoatTripPriceCalculator calculator;
-
+    private Weather weather;
+    private LocalDateTime over2uur;
+    private LocalDateTime now;
 
     @Before
     public void initialize() {
         calculator = new BoatTripPriceCalculator();
+        weather = calculator.getWeather();
+        now = LocalDateTime.now();
+        over2uur = now.plusHours(2);
     }
     /*
     Senario's and naming of the endTripPriceCalculator devided in Laketrips and RiverTrips:
@@ -31,15 +36,12 @@ public class BoatTripPriceCalculatorTest {
        RiverD = 26 degrees Celsius and its not raining
        RiverE = 19 degrees Celsius and its not raining
        RiverF = 16 degrees Celsius and its not raining
-     */
+    */
 
     @Test
     public void endTripPriceCalculatorLakeA() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(26));
@@ -50,11 +52,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorLakeB() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(19));
@@ -65,11 +64,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorLakeC() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(16));
@@ -80,11 +76,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorLakeD() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(26));
@@ -95,11 +88,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorLakeE() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(19));
@@ -110,11 +100,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorLakeF() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.LAKE_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(16));
@@ -125,11 +112,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverA() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(26));
@@ -140,11 +124,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverB() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(19));
@@ -155,11 +136,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverC() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(true);
         weather.setTemperature(new BigDecimal(16));
@@ -170,11 +148,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverD() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(26));
@@ -185,11 +160,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverE() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(19));
@@ -200,11 +172,8 @@ public class BoatTripPriceCalculatorTest {
 
     @Test
     public void endTripPriceCalculatorRiverF() {
-        Weather weather = calculator.getWeather();
-        LocalDateTime now = LocalDateTime.now();
         BoatTrip trip = new BoatTrip(1, BoatTripType.RIVER_TRIP, 1);
         trip.start();
-        LocalDateTime over2uur = now.plusHours(2);
         trip.setEndTime(over2uur);
         weather.setRaining(false);
         weather.setTemperature(new BigDecimal(16));
