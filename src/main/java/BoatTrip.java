@@ -40,7 +40,7 @@ public class BoatTrip {
 
     public Duration getDuration() throws BoatTripException {
 
-        if (endTime.equals(null)) {
+        if (endTime == null) {
             throw new BoatTripException("No endtime known");
         }
         Duration duration = Duration.between(startTime, endTime);
