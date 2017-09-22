@@ -1,11 +1,12 @@
 import java.time.Duration;
+import java.time.temporal.ChronoUnit;
 
 public class Boat {
 
     private int boatNumber;
-    Duration timeSinceLastInspection;
+    private Duration timeSinceLastInspection = Duration.of(0, ChronoUnit.SECONDS);
 
-    public Boat(int boatNumber){
+    public Boat(int boatNumber) {
         this.boatNumber = boatNumber;
     }
 
@@ -20,4 +21,5 @@ public class Boat {
     public void setTimeSinceLastInspection(Duration timeSinceLastInspection) {
         this.timeSinceLastInspection = timeSinceLastInspection;
     }
+
 }
