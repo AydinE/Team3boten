@@ -64,7 +64,7 @@ public class BoatTrip {
         System.out.println("Trip " + tripNumber + " ended");
         System.out.println("Trip type: " + tripType);
         System.out.println("Boat number: " + boatNumber);
-        System.out.println("Trip end time: " + startTime.format(formatter));
+        System.out.println("Trip end time: " + endTime.format(formatter));
         System.out.println("Trip duration: " + String.format("%d:%02d:%02d", duration.getSeconds() / 3600, (duration.getSeconds() % 3600) / 60, (duration.getSeconds() % 60)));
         System.out.println("Weather: " + weather.getTemperature() + "°C, " + (weather.isRaining() ? "raining" : "no rain"));
         System.out.println("Trip price: € " + tripPrice);
