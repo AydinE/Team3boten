@@ -12,13 +12,13 @@ public class BoatTripPriceCalculator {
         if( isRaining ){
             hourlyPrice = hourlyPrice - 1;
         }
-        if(temperature > 18){
-            if(temperature > 25){
-                hourlyPrice = hourlyPrice + 3;
-            } else {
+        if(temperature > 18 && temperature < 25) {
+            hourlyPrice = hourlyPrice + 3;
+        }
+             else {
                 hourlyPrice = hourlyPrice + 2;
             }
-        }
+        
         Duration duration = Duration.between(trip.getStartTime(), trip.getEndTime());
         double timeInMinutes = ((double) duration.getSeconds()) / 60;
 
